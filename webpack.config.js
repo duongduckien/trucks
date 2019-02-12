@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TSLintPlugin = require('tslint-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -28,13 +29,13 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: "style-loader" // creates style nodes from JS strings
+                        loader: "style-loader"
                     },
                     {
-                        loader: "css-loader" // translates CSS into CommonJS
+                        loader: "css-loader"
                     },
                     {
-                        loader: "sass-loader" // compiles Sass to CSS
+                        loader: "sass-loader"
                     }
                 ]
             }
@@ -43,6 +44,12 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html"
+        }),
+        new TSLintPlugin({
+            files: ['./src/**/*.ts'],
+            config: './tslint.json',
+            waitForLinting: true,
+            warningsAsError: true
         })
     ]
 };

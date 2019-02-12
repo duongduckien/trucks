@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { commonReducer, CommonState } from './common';
+import { commonReducer, ICommonState } from './common';
 
-export interface State {
-    common: CommonState;
-};
+export interface IState {
+    common: ICommonState;
+}
 
-export default combineReducers<State>({
-    common: commonReducer
+export default combineReducers<IState>({
+    common: commonReducer,
 });

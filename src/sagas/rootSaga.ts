@@ -3,8 +3,8 @@ import { watchShowLoading } from './commonSaga';
 
 function* rootSaga() {
     yield all([
-        watchShowLoading()
-    ])
+        watchShowLoading(),
+    ]);
 }
 
 export default rootSaga;
