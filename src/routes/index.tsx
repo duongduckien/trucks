@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Components
@@ -7,7 +7,7 @@ import Login from '../containers/Login';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-export class Main extends Component<{}> {
+export class Main extends React.Component<{}> {
 
     render() {
         return (
