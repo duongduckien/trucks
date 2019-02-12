@@ -4,18 +4,15 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// Router
-import { Main } from './routes';
-
 //Redux
 import { Provider } from 'react-redux';
 import store from './configureStore';
 
 ReactDOM.render(
     <Provider store={store}>
-        <Main />
+        <App />
     </Provider>, 
-    document.getElementById('root')
+    document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

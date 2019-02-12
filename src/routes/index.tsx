@@ -1,27 +1,23 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // Components
 import Home from '../containers/Home';
 import Login from '../containers/Login';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
-export class Main extends React.Component<{}> {
+class Router extends React.Component<{}> {
 
     render() {
         return (
-            <div className='container'>
-                <Header />
-                <Router>
-                    <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/login" exact component={Login} />
-                    </Switch>
-                </Router>
-                <Footer />
-            </div>
-        )
+            <BrowserRouter>
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/login" exact component={Login} />
+                </Switch>
+            </BrowserRouter>
+        );
     }
 
 }
+
+export default Router;

@@ -1,17 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import './App.scss';
 
-class App extends Component {
+// Components
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Router from './routes';
+
+class App extends React.Component<{}> {
+
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    
-                </header>
+            <div className='container'>
+                <Header />
+
+                <div className="container-fluid">
+                    <Router />
+                </div>
+                
+                <Footer />
             </div>
         );
     }
+
 }
 
 export default App;
