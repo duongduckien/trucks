@@ -5,7 +5,8 @@ const TSLintPlugin = require('tslint-webpack-plugin');
 module.exports = {
     entry: {
         app: ['./src/index.tsx'],
-        vendor: ['react', 'react-dom', 'react-router-dom']
+        vendor: ['react', 'react-dom', 'react-router-dom'],
+        // myStyles: 'font-awesome/scss/font-awesome.scss'
     },
     output: {
         path: path.join(__dirname, "/dist"),
@@ -38,7 +39,31 @@ module.exports = {
                         loader: "sass-loader"
                     }
                 ]
-            }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',                    
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                    }
+                }]
+            },
+            {
+                test: /font-awesome\.config\.js/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'font-awesome-loader' }
+                ]
+            },
         ]
     },
     plugins: [

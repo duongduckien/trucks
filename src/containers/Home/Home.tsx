@@ -20,6 +20,7 @@ export class Home extends React.Component<{}> {
                             <th>Production year</th>
                             <th>Status</th>
                             <th>Description</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,9 @@ export class Home extends React.Component<{}> {
                             <td>@mdo</td>
                             <td>1</td>
                             <td>Mark</td>
+                            <td>
+                                <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </td>
                         </tr>
                         <tr>
                             <td>1</td>
@@ -46,6 +50,7 @@ export class Home extends React.Component<{}> {
                             <td>@mdo</td>
                             <td>1</td>
                             <td>Mark</td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </Table>
