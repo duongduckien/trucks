@@ -1,0 +1,12 @@
+.search-truck {
+    margin: 2rem 0 1.5rem 0;
+    input {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        height: 2.5em;
+        width: 200px;
+    }
+    input:focus {
+        outline: none;
+    }
+}

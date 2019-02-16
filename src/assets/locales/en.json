@@ -8,5 +8,7 @@
     "PARKING_ADDRESS": "Parking Address",
     "PRODUCTION_YEAR": "Production year",
     "STATUS": "Status",
-    "DESCRIPTION": "Description"
+    "DESCRIPTION": "Description",
+    "SEARCH_TRUCKS_PLACEHOLDER": "Search trucks",
+    "ADD_TRUCK": "Add truck"
 }
