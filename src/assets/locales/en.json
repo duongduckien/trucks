@@ -1,0 +1,12 @@
+{
+    "TRUCK_PLATE": "Truck plate",
+    "CARGO_TYPE": "Cargo type",
+    "DRIVER": "Driver",
+    "TRUCK_TYPE": "Truck type",
+    "PRICE": "Price",
+    "DIMENSION": "Dimension (L-W-H)",
+    "PARKING_ADDRESS": "Parking Address",
+    "PRODUCTION_YEAR": "Production year",
+    "STATUS": "Status",
+    "DESCRIPTION": "Description"
+}

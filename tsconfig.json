@@ -16,7 +16,8 @@
         "moduleResolution": "node",
         "declaration": false,
         "noLib": false,
-        "suppressImplicitAnyIndexErrors": true
+        "suppressImplicitAnyIndexErrors": true,
+        "typeRoots": [ "node_modules/@types", "./typings.d.ts" ]
     },
     "include": [
         "src"

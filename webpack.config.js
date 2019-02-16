@@ -64,6 +64,11 @@ module.exports = {
                     { loader: 'font-awesome-loader' }
                 ]
             },
+            {
+                test: /\.json$/,
+                loader: 'json-loader',
+                type: 'javascript/auto'
+            },
         ]
     },
     plugins: [
