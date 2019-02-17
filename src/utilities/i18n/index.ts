@@ -5,7 +5,7 @@ import * as en from '../../assets/locales/en.json';
 import * as fr from '../../assets/locales/fr.json';
 
 const options = {
-    debug: true,
+    debug: false,
     resources: {
         en: {
             translation: en,

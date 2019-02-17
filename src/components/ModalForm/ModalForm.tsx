@@ -3,11 +3,7 @@ import { Modal, Container, Row, Col, Button } from 'react-bootstrap';
 import i18n from '../../utilities/i18n';
 import './styles.scss';
 
-interface IProps {
-    onHide: any;
-}
-
-export class ModalForm extends React.Component<IProps, {}> {
+export class ModalForm extends React.Component<{}> {
 
     constructor(props: any) {
         super(props);
@@ -16,7 +12,11 @@ export class ModalForm extends React.Component<IProps, {}> {
     render() {
         return (
             <div className="modal">
-                <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter">
+                <Modal 
+                    {...this.props} 
+                    aria-labelledby="contained-modal-title-vcenter" 
+                    show={false}
+                >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Using Grid in Modal
@@ -47,7 +47,7 @@ export class ModalForm extends React.Component<IProps, {}> {
                         </Container>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={this.props.onHide}>Close</Button>
+                        <Button>Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

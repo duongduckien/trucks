@@ -7,10 +7,20 @@ import './styles.scss';
 import Search from '../../components/Search';
 import Paginator from '../../components/Paginator';
 
-export class ListTrucks extends React.Component<{}> {
+interface IProps {
+    actions: {
+        openModalForm: any,
+    };
+}
+
+export class ListTrucks extends React.Component<IProps, {}> {
 
     constructor(props: any) {
         super(props);
+    }
+
+    addTruck() {
+        this.props.actions.openModalForm.openModalForm('asdasdasdsadas');
     }
 
     editTruck() {
@@ -27,7 +37,11 @@ export class ListTrucks extends React.Component<{}> {
                 <Search />
 
                 <div className="btn-add-truck">
-                    <button type="button" className="btn btn-success">{i18n.t('ADD_TRUCK')}</button>
+                    <button 
+                        type="button" 
+                        className="btn btn-success"
+                        onClick={() => this.addTruck()}
+                    >{i18n.t('ADD_TRUCK')}</button>
                 </div>
 
                 <Table striped bordered hover>

@@ -1,9 +1,10 @@
 import { all } from 'redux-saga/effects';
-import { watchShowLoading } from './commonSaga';
+import { watchShowLoading, watchOpenModalForm } from './commonSaga';
 
 function* rootSaga() {
     yield all([
         watchShowLoading(),
+        watchOpenModalForm(),
     ]);
 }
 
