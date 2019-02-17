@@ -5,6 +5,9 @@ import './styles.scss';
 
 interface IProps {
     common: any;
+    actions: {
+        modalForm: any,
+    };
 }
 
 export class ModalForm extends React.Component<IProps, {}> {
@@ -13,46 +16,76 @@ export class ModalForm extends React.Component<IProps, {}> {
         super(props);
     }
 
+    hideModal() {
+        this.props.actions.modalForm.openModalForm({
+            show: false,
+            data: {
+
+            },
+        });
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+
+    componentWillReceiveProps(nextProps: any) {
+        console.log('componentWillReceiveProps');
+        console.log(nextProps);
+    }
+
+    shouldComponentUpdate(nextState: any, nextProps: any) {
+        console.log('shouldComponentUpdate');
+        return true;
+    }
+
+    createForm() {
+        const formData = [];
+        if (this.props.common.modalForm.data.form && this.props.common.modalForm.data.form.length > 0) {
+            const arr = this.props.common.modalForm.data.form;
+            if (arr.length > 0) {
+                for (const [i, v] of arr.entries()) {
+                    formData.push(
+                        <div className="modal-form-row" key={i}>
+                            <Row className="show-grid">
+                                <Col xs={12} md={4}>
+                                    <span>{v.label}</span>
+                                </Col>
+                                <Col xs={12} md={8}>
+                                    <input type="text" />
+                                </Col>
+                            </Row>
+                        </div>,
+                    );
+                }
+            }
+        }
+        return formData;
+    }
+
     render() {
-        console.log(this.props);
         return (
             <div className="modal">
-                <Modal 
-                    {...this.props} 
-                    aria-labelledby="contained-modal-title-vcenter" 
+                <Modal
+                    aria-labelledby="contained-modal-title-vcenter"
                     show={this.props.common.modalForm.show}
                 >
-                    <Modal.Header closeButton>
+                    <Modal.Header>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Using Grid in Modal
-                    </Modal.Title>
+                            {this.props.common.modalForm.data.title}
+                        </Modal.Title>
                     </Modal.Header>
+
                     <Modal.Body>
                         <Container>
-                            <Row className="show-grid">
-                                <Col xs={12} md={8}>
-                                    <code>.col-xs-12 .col-md-8</code>
-                                </Col>
-                                <Col xs={6} md={4}>
-                                    <code>.col-xs-6 .col-md-4</code>
-                                </Col>
-                            </Row>
-
-                            <Row className="show-grid">
-                                <Col xs={6} md={4}>
-                                    <code>.col-xs-6 .col-md-4</code>
-                                </Col>
-                                <Col xs={6} md={4}>
-                                    <code>.col-xs-6 .col-md-4</code>
-                                </Col>
-                                <Col xs={6} md={4}>
-                                    <code>.col-xs-6 .col-md-4</code>
-                                </Col>
-                            </Row>
+                            {this.createForm()}
                         </Container>
                     </Modal.Body>
+
                     <Modal.Footer>
-                        <Button>Close</Button>
+                        <Button
+                            onClick={() => this.hideModal()}
+                        >Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

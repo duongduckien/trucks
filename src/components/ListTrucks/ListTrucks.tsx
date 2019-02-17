@@ -7,6 +7,9 @@ import './styles.scss';
 import Search from '../../components/Search';
 import Paginator from '../../components/Paginator';
 
+// Interfaces
+import { IModalFormData } from '../../interfaces/Modal';
+
 interface IProps {
     actions: {
         modalForm: any,
@@ -20,10 +23,28 @@ export class ListTrucks extends React.Component<IProps, {}> {
     }
 
     addTruck() {
+
+        const formData: IModalFormData[] = [
+            {label: i18n.t('TRUCK_PLATE'), type: '', value: '', require: true},
+            {label: i18n.t('CARGO_TYPE'), type: '', value: '', require: true},
+            {label: i18n.t('DRIVER'), type: '', value: '', require: true},
+            {label: i18n.t('TRUCK_TYPE'), type: '', value: '', require: true},
+            {label: i18n.t('PRICE'), type: '', value: '', require: true},
+            {label: i18n.t('DIMENSION'), type: '', value: '', require: true},
+            {label: i18n.t('PARKING_ADDRESS'), type: '', value: '', require: true},
+            {label: i18n.t('PRODUCTION_YEAR'), type: '', value: '', require: true},
+            {label: i18n.t('STATUS'), type: '', value: '', require: true},
+            {label: i18n.t('DESCRIPTION'), type: '', value: '', require: true},
+        ];
+
         this.props.actions.modalForm.openModalForm({
             show: true,
-            data: 'dasdadasda',
+            data: {
+                title: i18n.t('ADD_TRUCK'),
+                form: formData,
+            },
         });
+        
     }
 
     editTruck() {

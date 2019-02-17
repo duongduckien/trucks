@@ -12,7 +12,9 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-
+        actions: {
+            modalForm: bindActionCreators(commonActions, dispatch),
+        },
     };
 };
 
