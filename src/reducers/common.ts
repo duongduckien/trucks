@@ -2,12 +2,15 @@ import * as types from '../actions/types';
 
 export interface ICommonState {
     showLoading: boolean;
-    openModalForm: any;
+    modalForm: any;
 }
 
 export const COMMON_INITAL_STATE: ICommonState = {
     showLoading: false,
-    openModalForm: {},
+    modalForm: {
+        show: false,
+        data: {},
+    },
 };
 
 export function commonReducer(state = COMMON_INITAL_STATE, action: any): ICommonState {
@@ -16,7 +19,7 @@ export function commonReducer(state = COMMON_INITAL_STATE, action: any): ICommon
             return { ...state, ...{ showLoading: action.data } };
         }
         case types.OPEN_MODAL_FORM: {
-            return { ...state, ...{ openModalForm: action.data } };
+            return { ...state, ...{ modalForm: action.data } };
         }
         default: {
             return state;

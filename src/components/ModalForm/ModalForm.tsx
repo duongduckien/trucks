@@ -3,19 +3,24 @@ import { Modal, Container, Row, Col, Button } from 'react-bootstrap';
 import i18n from '../../utilities/i18n';
 import './styles.scss';
 
-export class ModalForm extends React.Component<{}> {
+interface IProps {
+    common: any;
+}
+
+export class ModalForm extends React.Component<IProps, {}> {
 
     constructor(props: any) {
         super(props);
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="modal">
                 <Modal 
                     {...this.props} 
                     aria-labelledby="contained-modal-title-vcenter" 
-                    show={false}
+                    show={this.props.common.modalForm.show}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">

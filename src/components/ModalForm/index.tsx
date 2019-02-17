@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import { ICommonState } from '../../reducers/common';
 import * as commonActions from '../../actions/common';
 
-const mapStateToProps = (state: ICommonState) => {
+const mapStateToProps = (state: any) => {
     return {
-        openModalForm: state.openModalForm,
+        common: state.common,
     };
 };
 

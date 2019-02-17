@@ -9,7 +9,7 @@ import Paginator from '../../components/Paginator';
 
 interface IProps {
     actions: {
-        openModalForm: any,
+        modalForm: any,
     };
 }
 
@@ -20,7 +20,10 @@ export class ListTrucks extends React.Component<IProps, {}> {
     }
 
     addTruck() {
-        this.props.actions.openModalForm.openModalForm('asdasdasdsadas');
+        this.props.actions.modalForm.openModalForm({
+            show: true,
+            data: 'dasdadasda',
+        });
     }
 
     editTruck() {

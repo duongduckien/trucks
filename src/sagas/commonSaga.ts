@@ -17,7 +17,7 @@ export function* watchShowLoading() {
     yield takeEvery(types.SHOW_LOADING, showLoading);
 }
 
-export function* openModalForm(action: any) {
+export function* modalForm(action: any) {
 
     try {
 
@@ -30,6 +30,6 @@ export function* openModalForm(action: any) {
 
 }
 
-export function* watchOpenModalForm() {
-    yield takeEvery(types.OPEN_MODAL_FORM, openModalForm);
+export function* watchModalForm() {
+    yield takeEvery(types.OPEN_MODAL_FORM, modalForm);
 }
