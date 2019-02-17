@@ -3,6 +3,10 @@ import { Table } from 'react-bootstrap';
 import i18n from '../../utilities/i18n';
 import './styles.scss';
 
+// Components
+import Search from '../../components/Search';
+import Paginator from '../../components/Paginator';
+
 export class ListTrucks extends React.Component<{}> {
 
     constructor(props: any) {
@@ -20,9 +24,12 @@ export class ListTrucks extends React.Component<{}> {
     render() {
         return (
             <div className="list-trucks">
+                <Search />
+
                 <div className="btn-add-truck">
                     <button type="button" className="btn btn-success">{i18n.t('ADD_TRUCK')}</button>
                 </div>
+
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -79,6 +86,8 @@ export class ListTrucks extends React.Component<{}> {
                         </tr>
                     </tbody>
                 </Table>
+
+                <Paginator />
             </div>
         );
     }

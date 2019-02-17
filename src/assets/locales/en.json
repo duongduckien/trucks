@@ -10,5 +10,6 @@
     "STATUS": "Status",
     "DESCRIPTION": "Description",
     "SEARCH_TRUCKS_PLACEHOLDER": "Search trucks",
-    "ADD_TRUCK": "Add truck"
+    "ADD_TRUCK": "Add truck",
+    "LIST_TRUCKS": "List trucks"
 }

@@ -6,11 +6,11 @@ module.exports = {
     entry: {
         app: ['./src/index.tsx'],
         vendor: ['react', 'react-dom', 'react-router-dom'],
-        // myStyles: 'font-awesome/scss/font-awesome.scss'
     },
     output: {
-        path: path.join(__dirname, "/dist"),
-        filename: "bundle.js"
+        path: path.join(__dirname, '/dist'),
+        filename: 'bundle.js',
+        publicPath: '/',
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
@@ -22,7 +22,7 @@ module.exports = {
                 loader: 'ts-loader'
             },
             {
-                enforce: "pre",
+                enforce: 'pre',
                 test: /\.js$/,
                 loader: "source-map-loader"
             },
@@ -30,13 +30,13 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: "style-loader"
+                        loader: 'style-loader'
                     },
                     {
-                        loader: "css-loader"
+                        loader: 'css-loader'
                     },
                     {
-                        loader: "sass-loader"
+                        loader: 'sass-loader'
                     }
                 ]
             },
@@ -70,6 +70,9 @@ module.exports = {
                 type: 'javascript/auto'
             },
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({

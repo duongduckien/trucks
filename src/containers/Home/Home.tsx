@@ -5,8 +5,6 @@ import './styles.scss';
 
 // Components
 import ListTrucks from '../../components/ListTrucks';
-import Search from '../../components/Search';
-import Paginator from '../../components/Paginator';
 
 export class Home extends React.Component<{}> {
 
@@ -16,11 +14,7 @@ export class Home extends React.Component<{}> {
 
     render() {
         return (
-            <div>
-                <Search />
-                <ListTrucks />
-                <Paginator />
-            </div>
+            <div></div>
         );
     }
 

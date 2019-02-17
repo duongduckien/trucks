@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import i18n from '../../utilities/i18n';
 import './styles.scss';
 
 export class NavBar extends React.Component<{}> {
@@ -8,7 +10,7 @@ export class NavBar extends React.Component<{}> {
             <div className="navbar">
                 <nav>
                     <div>
-                        <a href="#" className="nav-link">List Trucks</a>
+                        <Link to="/list-trucks">{i18n.t('LIST_TRUCKS')}</Link>
                     </div>
                 </nav>
             </div>
