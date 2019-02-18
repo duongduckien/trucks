@@ -25,16 +25,16 @@ export class ListTrucks extends React.Component<IProps, {}> {
     addTruck() {
 
         const formData: IModalFormData[] = [
-            {label: i18n.t('TRUCK_PLATE'), type: '', value: '', require: true},
-            {label: i18n.t('CARGO_TYPE'), type: '', value: '', require: true},
-            {label: i18n.t('DRIVER'), type: '', value: '', require: true},
-            {label: i18n.t('TRUCK_TYPE'), type: '', value: '', require: true},
-            {label: i18n.t('PRICE'), type: '', value: '', require: true},
-            {label: i18n.t('DIMENSION'), type: '', value: '', require: true},
-            {label: i18n.t('PARKING_ADDRESS'), type: '', value: '', require: true},
-            {label: i18n.t('PRODUCTION_YEAR'), type: '', value: '', require: true},
-            {label: i18n.t('STATUS'), type: '', value: '', require: true},
-            {label: i18n.t('DESCRIPTION'), type: '', value: '', require: true},
+            {label: i18n.t('TRUCK_PLATE'), alias: 'truckPlate', type: 'text', value: '', require: true},
+            {label: i18n.t('CARGO_TYPE'), alias: 'cargoType', type: 'text', value: '', require: true},
+            {label: i18n.t('DRIVER'), alias: 'driver', type: 'text', value: '', require: true},
+            {label: i18n.t('TRUCK_TYPE'), alias: 'truckType', type: 'text', value: '', require: false},
+            {label: i18n.t('PRICE'), alias: 'price', type: 'text', value: '', require: true},
+            {label: i18n.t('DIMENSION'), alias: 'dimension', type: 'text', value: '', require: false},
+            {label: i18n.t('PARKING_ADDRESS'), alias: 'parkingAddress', type: 'text', value: '', require: true},
+            {label: i18n.t('PRODUCTION_YEAR'), alias: 'productionYear', type: 'select', value: 'year', require: false},
+            {label: i18n.t('STATUS'), alias: 'status', type: 'select', value: 'status', require: true},
+            {label: i18n.t('DESCRIPTION'), alias: 'description', type: 'textarea', value: '', require: true},
         ];
 
         this.props.actions.modalForm.openModalForm({
@@ -44,7 +44,7 @@ export class ListTrucks extends React.Component<IProps, {}> {
                 form: formData,
             },
         });
-        
+
     }
 
     editTruck() {

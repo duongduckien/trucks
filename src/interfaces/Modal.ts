@@ -3,4 +3,5 @@ export interface IModalFormData {
     type: string;
     value: any;
     require: boolean;
+    alias: string;
 }

@@ -3,5 +3,8 @@
     span {
         font-size: 13px;
         font-weight: bold;
+        .modal-form-require {
+            color: red;
+        }
     }
 }
