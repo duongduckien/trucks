@@ -21,7 +21,6 @@ export function* modalForm(action: any) {
 
     try {
 
-        console.log(action);
         return true;
 
     } catch (e) {

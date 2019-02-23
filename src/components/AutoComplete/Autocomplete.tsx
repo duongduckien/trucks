@@ -4,36 +4,31 @@ import './styles.scss';
 
 interface IProps {
     list: any;
+    chips: boolean;
+    onSelectType: (item: any) => void;
 }
 
 interface IState {
     listMatch: any[];
+    inputVal: string;
+    listChips: any[];
 }
 
 export class AutoComplete extends React.Component<IProps, IState> {
 
     state = {
         listMatch: [],
+        inputVal: '',
+        listChips: [],
     };
 
     constructor(props: any) {
         super(props);
     }
 
-    render() {
-        return (
-            <div className="autocomplete">
-                <input
-                    type="text"
-                    onChange={(e) => this.handleOnChange(e)}
-                    onBlur={() => this.handleOnBlur()}
-                />
-                {this.renderListMatch()}
-            </div>
-        );
-    }
+    handleOnChange(e) {
 
-    private handleOnChange(e) {
+        this.setState({inputVal: e.target.value});
 
         if (e.target.value.trim() !== '') {
             const listMatch = [];
@@ -48,11 +43,12 @@ export class AutoComplete extends React.Component<IProps, IState> {
             this.setState({listMatch});
         } else {
             this.setState({listMatch: []});
+            this.props.onSelectType('');
         }
 
     }
 
-    private renderListMatch() {
+    renderListMatch() {
         const listMatch = this.state.listMatch;
         if (listMatch.length > 0) {
             return (
@@ -60,7 +56,7 @@ export class AutoComplete extends React.Component<IProps, IState> {
                     <ul>
                         {
                             listMatch.map((item: any, index: number) => {
-                                return <li key={index}>{item.name}</li>;
+                                return <li key={index} onClick={() => this.handleClick(item)}>{item.name}</li>;
                             })
                         }
                     </ul>
@@ -69,8 +65,125 @@ export class AutoComplete extends React.Component<IProps, IState> {
         }
     }
 
-    private handleOnBlur() {
-        console.log('handleOnBlur');
+    renderChips() {
+        if (this.props.chips) {
+            if (this.state.listChips.length > 0) {
+                return (
+                    <div className="list-chips">
+                        <Row className="show-grid">
+                            {
+                                this.state.listChips.map((item: any, index: number) => {
+                                    return (
+                                        <Col xs={12} md={4} key={index}>
+                                            <div className="row">
+                                                <div className="chip">
+                                                    <span>
+                                                        <i 
+                                                            className="fa fa-times" 
+                                                            aria-hidden="true"
+                                                            onClick={() => this.removeChip(item)}
+                                                        ></i>
+                                                        <span className="chip-text">{item.name}</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                    );
+                                })
+                            }
+                        </Row>
+                    </div>
+                );
+            }
+        }
+    }
+
+    handleClick(item: any) {
+
+        if (this.props.chips) {
+
+            const listChips = this.state.listChips;
+
+            if (listChips.length > 0) {
+
+                let flag = true;
+
+                for (const el of listChips) {
+                    if (el.id === item.id) {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag) {
+                    listChips.push(item);
+                }
+
+            } else {
+                listChips.push(item);
+            }
+
+            this.setState({listChips});
+            this.resetListMatch();
+            this.resetInput();
+            this.handleSelectChips(this.state.listChips);
+
+        } else {
+
+            this.setState({
+                listMatch: [],
+                inputVal: item.name,
+            });
+            
+            this.props.onSelectType(item);
+
+        }
+        
+    }
+
+    removeChip(item: any) {
+        const arrChipsNew = [];
+        if (this.state.listChips.length > 0) {
+            for (const el of this.state.listChips) {
+                if (el.id !== item.id) {
+                    arrChipsNew.push(el);
+                }
+            }
+        }
+        this.setState({listChips: arrChipsNew});
+        this.handleSelectChips(arrChipsNew);
+    }
+
+    handleSelectChips(chips: any) {
+        const arr = [];
+        if (chips.length > 0) {
+            for (const el of chips) {
+                arr.push(el.id);
+            }
+        }
+        this.props.onSelectType(arr);
+    }
+
+    resetListMatch() {
+        this.setState({listMatch: []});
+    }
+
+    resetInput() {
+        this.setState({inputVal: ''});
+    }
+
+    render() {
+        return (
+            <div className="autocomplete">
+                <input
+                    type="text"
+                    onChange={(e) => this.handleOnChange(e)}
+                    value={this.state.inputVal}
+                />
+                {this.renderListMatch()}
+                {this.renderChips()}
+            </div>
+        );
     }
 
 }

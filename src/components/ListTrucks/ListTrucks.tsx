@@ -32,8 +32,6 @@ export class ListTrucks extends React.Component<IProps, {}> {
 
     addTruck() {
 
-        console.log(this.props.trucks.truckTypes);
-
         const truckTypes = this.props.trucks.truckTypes;
 
         const formData: IModalFormData[] = [

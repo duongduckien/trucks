@@ -12,7 +12,6 @@ export function* getTruckTypes() {
     try {
 
         const result = yield call(api.getTruckTypes);
-        console.log(result);
         yield put(trucksActions.getTruckTypesSuccess({
             items: result.data,
         }));

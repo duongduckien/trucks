@@ -34,10 +34,6 @@ export class ModalForm extends React.Component<IProps, IState> {
         super(props);
     }
 
-    componentDidMount() {
-        console.log('componentDidMount');
-    }
-
     componentWillReceiveProps(nextProps: any) {
         if (nextProps.common.modalForm.data.form && nextProps.common.modalForm.data.form.length > 0) {
             const arr = nextProps.common.modalForm.data.form;
@@ -66,6 +62,7 @@ export class ModalForm extends React.Component<IProps, IState> {
             show: false,
             data: {},
         });
+        this.setState({formData: []});
     }
 
     storeData() {
@@ -127,6 +124,12 @@ export class ModalForm extends React.Component<IProps, IState> {
                 return (
                     <AutoComplete 
                         list={listData}
+                        chips={true}
+                        onSelectType={(item) => (Array.isArray(v.data) 
+                            ? this.handleFormData(v.alias, item, 'autoCompleteChips') : 
+                            (item.id 
+                            ? this.handleFormData(v.alias, item.id, 'autoCompleteChips') 
+                            : this.handleFormData(v.alias, '', 'autoCompleteChips')))}
                     />
                 );
             }
@@ -137,6 +140,26 @@ export class ModalForm extends React.Component<IProps, IState> {
             }
             default: {
                 break;
+            }
+        }
+    }
+
+    /**
+     * Function handle form data
+     * @param  {any} key
+     * @param  {any} value
+     */
+    handleFormData(key: any, value: any, type: string) {
+        if (this.state.formData.length > 0) {
+            for (const [index, item] of this.state.formData.entries()) {
+                if (item.alias === key) {
+                    switch (type) {
+                        case 'autoCompleteChips': {
+                            this.state.formData[index]['value'] = value;
+                            break;
+                        }
+                    }
+                }
             }
         }
     }
