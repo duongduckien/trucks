@@ -13,5 +13,14 @@
     "ADD_TRUCK": "Add truck",
     "LIST_TRUCKS": "List trucks",
     "CLOSE": "Close",
-    "SAVE": "Save"
+    "SAVE": "Save",
+    "TRUCK_PLATE_REQUIRED": "Truck plate is required!",
+    "TRUCK_PLATE_FORMAT": "Truck plate format is invalid!",
+    "CARGO_TYPE_REQUIRED": "Cargo type is required!",
+    "CARGO_TYPE_MAXIMUM": "Cargo type must be of maximum {{number}} types!",
+    "PRICE_REQUIRED": "Price is required!",
+    "PRICE_NUMBER": "Price must be a number",
+    "PARKING_ADDRESS_MAX_LENGTH": "Parking address must be of maximum {{number}} characters!",
+    "STATUS_REQUIRED": "Status is required!",
+    "DESCRIPTION_MAX_LENGTH": "Description must be of maximum {{number}} characters!"
 }

@@ -15,7 +15,9 @@
         "curly": false,
         "ordered-imports": false,
         "member-access": false,
-        "object-literal-sort-keys": false
+        "object-literal-sort-keys": false,
+        "max-line-length": [true, 500],
+        "no-string-literal": false
     },
     "rulesDirectory": [],
     "linterOptions": {

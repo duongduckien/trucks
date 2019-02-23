@@ -33,3 +33,10 @@ export function* modalForm(action: any) {
 export function* watchModalForm() {
     yield takeEvery(types.OPEN_MODAL_FORM, modalForm);
 }
+
+const commonSaga = [
+    fork(watchShowLoading),
+    fork(watchModalForm),
+];
+
+export default commonSaga;

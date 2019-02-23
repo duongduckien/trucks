@@ -13,6 +13,10 @@ import { IModalFormData } from '../../interfaces/Modal';
 interface IProps {
     actions: {
         modalForm: any,
+        trucks: any,
+    };
+    trucks: {
+        truckTypes: any,
     };
 }
 
@@ -22,11 +26,17 @@ export class ListTrucks extends React.Component<IProps, {}> {
         super(props);
     }
 
+    componentDidMount() {
+        this.props.actions.trucks.getTruckTypes();
+    }
+
     addTruck() {
+
+        console.log(this.props.trucks.truckTypes);
 
         const formData: IModalFormData[] = [
             {label: i18n.t('TRUCK_PLATE'), alias: 'truckPlate', type: 'text', value: '', require: true},
-            {label: i18n.t('CARGO_TYPE'), alias: 'cargoType', type: 'text', value: '', require: true},
+            {label: i18n.t('CARGO_TYPE'), alias: 'cargoType', type: 'autoCompleteChips', value: '', require: true},
             {label: i18n.t('DRIVER'), alias: 'driver', type: 'text', value: '', require: true},
             {label: i18n.t('TRUCK_TYPE'), alias: 'truckType', type: 'text', value: '', require: false},
             {label: i18n.t('PRICE'), alias: 'price', type: 'text', value: '', require: true},
