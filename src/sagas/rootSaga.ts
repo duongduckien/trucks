@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
-import commonSaga from './common';
-import trucksSaga from './trucks';
+import commonSaga from './commonSaga';
+import trucksSaga from './trucksSaga';
 
 function* rootSaga() {
     yield all([

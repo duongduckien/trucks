@@ -34,9 +34,11 @@ export class ListTrucks extends React.Component<IProps, {}> {
 
         console.log(this.props.trucks.truckTypes);
 
+        const truckTypes = this.props.trucks.truckTypes;
+
         const formData: IModalFormData[] = [
             {label: i18n.t('TRUCK_PLATE'), alias: 'truckPlate', type: 'text', value: '', require: true},
-            {label: i18n.t('CARGO_TYPE'), alias: 'cargoType', type: 'autoCompleteChips', value: '', require: true},
+            {label: i18n.t('CARGO_TYPE'), alias: 'cargoType', type: 'autoCompleteChips', value: '', require: true, data: truckTypes},
             {label: i18n.t('DRIVER'), alias: 'driver', type: 'text', value: '', require: true},
             {label: i18n.t('TRUCK_TYPE'), alias: 'truckType', type: 'text', value: '', require: false},
             {label: i18n.t('PRICE'), alias: 'price', type: 'text', value: '', require: true},

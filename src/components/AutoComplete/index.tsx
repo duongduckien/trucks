@@ -1,3 +1,3 @@
-import { Autocomplete } from './Autocomplete';
+import { AutoComplete } from './Autocomplete';
 
-export default Autocomplete;
+export default AutoComplete;

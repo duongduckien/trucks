@@ -9,7 +9,7 @@ import i18n from '../../utilities/i18n';
 import { Helper } from '../../utilities/helper';
 
 // Components
-import Autocomplete from '../Autocomplete';
+import AutoComplete from '../AutoComplete';
 
 interface IProps {
     common: any;
@@ -123,8 +123,11 @@ export class ModalForm extends React.Component<IProps, IState> {
 
             }
             case 'autoCompleteChips': {
+                const listData = (v.data && Array.isArray(v.data)) ? v.data : [];
                 return (
-                    <Autocomplete />
+                    <AutoComplete 
+                        list={listData}
+                    />
                 );
             }
             case 'textarea': {
