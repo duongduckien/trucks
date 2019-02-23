@@ -62,11 +62,11 @@ export class ModalForm extends React.Component<IProps, IState> {
             show: false,
             data: {},
         });
-        this.setState({formData: []});
+        this.setState({ formData: [] });
     }
 
     storeData() {
-       console.log(this.state.formData);
+        console.log(this.state.formData);
     }
 
     handleChange(e: any, alias: string) {
@@ -122,14 +122,14 @@ export class ModalForm extends React.Component<IProps, IState> {
             case 'autoCompleteChips': {
                 const listData = (v.data && Array.isArray(v.data)) ? v.data : [];
                 return (
-                    <AutoComplete 
+                    <AutoComplete
                         list={listData}
                         chips={true}
-                        onSelectType={(item) => (Array.isArray(v.data) 
-                            ? this.handleFormData(v.alias, item, 'autoCompleteChips') : 
-                            (item.id 
-                            ? this.handleFormData(v.alias, item.id, 'autoCompleteChips') 
-                            : this.handleFormData(v.alias, '', 'autoCompleteChips')))}
+                        onSelectType={(item) => (Array.isArray(v.data)
+                            ? this.handleFormData(v.alias, item, 'autoCompleteChips') :
+                            (item.id
+                                ? this.handleFormData(v.alias, item.id, 'autoCompleteChips')
+                                : this.handleFormData(v.alias, '', 'autoCompleteChips')))}
                     />
                 );
             }

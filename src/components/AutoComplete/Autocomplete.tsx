@@ -28,7 +28,7 @@ export class AutoComplete extends React.Component<IProps, IState> {
 
     handleOnChange(e) {
 
-        this.setState({inputVal: e.target.value});
+        this.setState({ inputVal: e.target.value });
 
         if (e.target.value.trim() !== '') {
             const listMatch = [];
@@ -40,9 +40,9 @@ export class AutoComplete extends React.Component<IProps, IState> {
                     }
                 }
             }
-            this.setState({listMatch});
+            this.setState({ listMatch });
         } else {
-            this.setState({listMatch: []});
+            this.setState({ listMatch: [] });
             this.props.onSelectType('');
         }
 
@@ -78,8 +78,8 @@ export class AutoComplete extends React.Component<IProps, IState> {
                                             <div className="row">
                                                 <div className="chip">
                                                     <span>
-                                                        <i 
-                                                            className="fa fa-times" 
+                                                        <i
+                                                            className="fa fa-times"
                                                             aria-hidden="true"
                                                             onClick={() => this.removeChip(item)}
                                                         ></i>
@@ -123,7 +123,7 @@ export class AutoComplete extends React.Component<IProps, IState> {
                 listChips.push(item);
             }
 
-            this.setState({listChips});
+            this.setState({ listChips });
             this.resetListMatch();
             this.resetInput();
             this.handleSelectChips(this.state.listChips);
@@ -134,11 +134,11 @@ export class AutoComplete extends React.Component<IProps, IState> {
                 listMatch: [],
                 inputVal: item.name,
             });
-            
+
             this.props.onSelectType(item);
 
         }
-        
+
     }
 
     removeChip(item: any) {
@@ -150,7 +150,7 @@ export class AutoComplete extends React.Component<IProps, IState> {
                 }
             }
         }
-        this.setState({listChips: arrChipsNew});
+        this.setState({ listChips: arrChipsNew });
         this.handleSelectChips(arrChipsNew);
     }
 
@@ -165,11 +165,11 @@ export class AutoComplete extends React.Component<IProps, IState> {
     }
 
     resetListMatch() {
-        this.setState({listMatch: []});
+        this.setState({ listMatch: [] });
     }
 
     resetInput() {
-        this.setState({inputVal: ''});
+        this.setState({ inputVal: '' });
     }
 
     render() {
