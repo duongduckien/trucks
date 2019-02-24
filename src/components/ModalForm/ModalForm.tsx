@@ -77,7 +77,7 @@ export class ModalForm extends React.Component<IProps, IState> {
     createInput(v: any) {
         switch (v.type) {
             case 'text': {
-                return (<input type="text" onChange={(e) => this.handleChange(e, v.alias)} />);
+                return (<input type="text" onChange={(e) => this.handleFormData(v.alias, e.target.value, 'text')} />);
             }
             case 'select': {
 
@@ -133,9 +133,42 @@ export class ModalForm extends React.Component<IProps, IState> {
                     />
                 );
             }
+            case 'autoComplete': {
+                const listData = (v.data && Array.isArray(v.data)) ? v.data : [];
+                return (
+                    <AutoComplete
+                        list={listData}
+                        chips={false}
+                        onSelectType={(item) => (Array.isArray(v.data)
+                            ? this.handleFormData(v.alias, item, 'autoComplete') :
+                            (item.id
+                                ? this.handleFormData(v.alias, item.id, 'autoComplete')
+                                : this.handleFormData(v.alias, '', 'autoComplete')))}
+                    />
+                );
+            }
             case 'textarea': {
                 return (
                     <textarea onChange={(e) => this.handleChange(e, v.alias)}></textarea>
+                );
+            }
+            case 'numberWithUnit': {
+                return (
+                    <div className="number-with-unit">
+                        <input type="number" min="0" onChange={(e) => this.handleFormData(v.alias, e.target.value, 'numberWithUnit')} />
+                        <span className="unit-text">{v.showType ? v.showType.unit : ''}</span>
+                    </div>
+                );
+            }
+            case 'numberCurrencyFormat': {
+                return (
+                    <div className="number-currency">
+                        <input 
+                            type="number"
+                            min="0"
+                            onChange={(e) => this.handleFormData(v.alias, e.target.value, 'numberCurrencyFormat')} 
+                        />
+                    </div>
                 );
             }
             default: {
@@ -155,6 +188,22 @@ export class ModalForm extends React.Component<IProps, IState> {
                 if (item.alias === key) {
                     switch (type) {
                         case 'autoCompleteChips': {
+                            this.state.formData[index]['value'] = value;
+                            break;
+                        }
+                        case 'text': {
+                            this.state.formData[index]['value'] = value;
+                            break;
+                        }
+                        case 'autoComplete': {
+                            this.state.formData[index]['value'] = value.id;
+                            break;
+                        }
+                        case 'numberWithUnit': {
+                            this.state.formData[index]['value'] = value;
+                            break;
+                        }
+                        case 'numberCurrencyFormat': {
                             this.state.formData[index]['value'] = value;
                             break;
                         }

@@ -1,7 +1,7 @@
 import { ModalForm } from './ModalForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ICommonState } from '../../reducers/common';
+import { ICommonState } from '../../reducers/commonReducer';
 import * as commonActions from '../../actions/common';
 
 const mapStateToProps = (state: any) => {

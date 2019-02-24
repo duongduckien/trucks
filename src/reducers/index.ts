@@ -1,13 +1,16 @@
 import { combineReducers } from 'redux';
-import { commonReducer, ICommonState } from './common';
-import { trucksReducer, ITrucksState } from './trucks';
+import { commonReducer, ICommonState } from './commonReducer';
+import { trucksReducer, ITrucksState } from './trucksReducer';
+import { driversReducer, IDriversState } from './driversReducer';
 
 export interface IState {
     common: ICommonState;
     trucks: ITrucksState;
+    drivers: IDriversState;
 }
 
 export default combineReducers<IState>({
     common: commonReducer,
     trucks: trucksReducer,
+    drivers: driversReducer,
 });

@@ -8,4 +8,8 @@ export class API {
         return httpRequest.axiosInstance.get('/truckTypes');
     }
 
+    getDrivers() {
+        return httpRequest.axiosInstance.get('/drivers');
+    }
+
 }

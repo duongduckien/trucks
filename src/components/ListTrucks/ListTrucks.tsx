@@ -14,9 +14,13 @@ interface IProps {
     actions: {
         modalForm: any,
         trucks: any,
+        drivers: any,
     };
     trucks: {
         truckTypes: any,
+    };
+    drivers: {
+        listDrivers: any,
     };
 }
 
@@ -28,18 +32,23 @@ export class ListTrucks extends React.Component<IProps, {}> {
 
     componentDidMount() {
         this.props.actions.trucks.getTruckTypes();
+        this.props.actions.drivers.getDrivers();
     }
 
     addTruck() {
 
         const truckTypes = this.props.trucks.truckTypes;
+        const listDrivers = this.props.drivers.listDrivers;
+        const truckShowType = {
+            unit: 'ton',
+        };
 
         const formData: IModalFormData[] = [
             { label: i18n.t('TRUCK_PLATE'), alias: 'truckPlate', type: 'text', value: '', require: true },
             { label: i18n.t('CARGO_TYPE'), alias: 'cargoType', type: 'autoCompleteChips', value: '', require: true, data: truckTypes },
-            { label: i18n.t('DRIVER'), alias: 'driver', type: 'text', value: '', require: true },
-            { label: i18n.t('TRUCK_TYPE'), alias: 'truckType', type: 'text', value: '', require: false },
-            { label: i18n.t('PRICE'), alias: 'price', type: 'text', value: '', require: true },
+            { label: i18n.t('DRIVER'), alias: 'driver', type: 'autoComplete', value: '', require: true, data: listDrivers },
+            { label: i18n.t('TRUCK_TYPE'), alias: 'truckType', type: 'numberWithUnit', value: '', require: false, showType: truckShowType },
+            { label: i18n.t('PRICE'), alias: 'price', type: 'numberCurrencyFormat', value: '', require: true },
             { label: i18n.t('DIMENSION'), alias: 'dimension', type: 'text', value: '', require: false },
             { label: i18n.t('PARKING_ADDRESS'), alias: 'parkingAddress', type: 'text', value: '', require: true },
             { label: i18n.t('PRODUCTION_YEAR'), alias: 'productionYear', type: 'select', value: 'year', require: false },
