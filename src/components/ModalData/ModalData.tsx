@@ -27,8 +27,25 @@ export class ModalData extends React.Component<IProps, {}> {
     hideModal() {
         this.props.actions.modal.hideModal({
             show: false,
-            data: {},
+            component: '',
         });
+    }
+
+    getContent() {
+        
+        const tagName = this.props.common.modal.component;
+
+        switch (tagName) {
+            case 'TruckModal': {
+                return (
+                    <TruckModal />
+                );
+            }
+            default: {
+                break;
+            }
+        }
+
     }
 
     render() {
@@ -39,7 +56,7 @@ export class ModalData extends React.Component<IProps, {}> {
                     show={this.props.common.modal.show}
                     onHide={() => this.hideModal()}
                 >
-                    <TruckModal />
+                    {this.getContent()}
                 </Modal>
             </div>
         );

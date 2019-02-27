@@ -37,10 +37,9 @@ export class ListTrucks extends React.Component<IProps, {}> {
 
     addTruck() {
 
-        console.log('add truck');
         this.props.actions.modal.openModal({
             show: true,
-            data: {},
+            component: 'TruckModal',
         });
 
         // const truckTypes = this.props.trucks.truckTypes;

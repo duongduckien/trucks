@@ -20,7 +20,7 @@ export class TruckModal extends React.Component<IProps, {}> {
     hideModal() {
         this.props.actions.modal.hideModal({
             show: false,
-            data: {},
+            component: '',
         });
     }
 
