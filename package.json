@@ -36,7 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "webpack-dev-server --mode development --open --hot"
+    "dev": "webpack-dev-server --mode development --open --hot --inline"
   },
   "eslintConfig": {
     "extends": "react-app"

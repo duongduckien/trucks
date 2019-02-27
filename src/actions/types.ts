@@ -1,6 +1,7 @@
 // Common
 export const SHOW_LOADING = 'SHOW_LOADING';
-export const OPEN_MODAL_FORM = 'OPEN_MODAL_FORM';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const HIDE_MODAL = 'HIDE_MODAL';
 
 // Trucks
 export const GET_TRUCK_TYPES = 'GET_TRUCK_TYPES';

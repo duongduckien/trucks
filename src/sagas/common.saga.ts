@@ -17,7 +17,7 @@ export function* watchShowLoading() {
     yield takeEvery(types.SHOW_LOADING, showLoading);
 }
 
-export function* modalForm(action: any) {
+export function* modal(action: any) {
 
     try {
 
@@ -29,13 +29,13 @@ export function* modalForm(action: any) {
 
 }
 
-export function* watchModalForm() {
-    yield takeEvery(types.OPEN_MODAL_FORM, modalForm);
+export function* watchModal() {
+    yield takeEvery(types.OPEN_MODAL, modal);
 }
 
 const commonSaga = [
     fork(watchShowLoading),
-    fork(watchModalForm),
+    fork(watchModal),
 ];
 
 export default commonSaga;

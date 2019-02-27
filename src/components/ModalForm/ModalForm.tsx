@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Modal, Container, Row, Col, Button } from 'react-bootstrap';
 import './styles.scss';
 
-// Language
+// Languages
 import i18n from '../../utilities/i18n';
 
 // Utilities
@@ -20,18 +20,24 @@ interface IProps {
 
 interface IState {
     formData: any;
+    price: string;
 }
 
 const helper = new Helper();
 
 export class ModalForm extends React.Component<IProps, IState> {
 
-    state = {
-        formData: [],
-    };
+    // state = {
+    //     formData: [],
+    //     price: '',
+    // };
 
     constructor(props: any) {
         super(props);
+        this.state = {
+            formData: [],
+            price: '',
+        };
     }
 
     componentWillReceiveProps(nextProps: any) {
@@ -164,9 +170,8 @@ export class ModalForm extends React.Component<IProps, IState> {
                 return (
                     <div className="number-currency">
                         <input 
-                            type="number"
-                            min="0"
-                            onChange={(e) => this.handleFormData(v.alias, e.target.value, 'numberCurrencyFormat')} 
+                            value={this.state.price}
+                            onChange={(e) => this.handlePrice(v.alias, e.target.value, 'numberCurrencyFormat')} 
                         />
                     </div>
                 );
@@ -175,6 +180,13 @@ export class ModalForm extends React.Component<IProps, IState> {
                 break;
             }
         }
+    }
+
+    handlePrice(key: any, value: any, type: string) {
+        this.setState({price: value});
+        console.log(key);
+        console.log(value);
+        console.log(type);
     }
 
     /**

@@ -1,7 +1,6 @@
-import { ModalForm } from './ModalForm';
+import { ModalData } from './ModalData';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ICommonState } from '../../reducers/common.reducer';
 import * as commonActions from '../../actions/common.action';
 
 const mapStateToProps = (state: any) => {
@@ -13,9 +12,9 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         actions: {
-            modalForm: bindActionCreators(commonActions, dispatch),
+            modal: bindActionCreators(commonActions, dispatch),
         },
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalData);

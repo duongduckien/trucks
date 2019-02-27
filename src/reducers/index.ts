@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { commonReducer, ICommonState } from './commonReducer';
+import { commonReducer, ICommonState } from './common.reducer';
 import { trucksReducer, ITrucksState } from './trucksReducer';
 import { driversReducer, IDriversState } from './driversReducer';
 
