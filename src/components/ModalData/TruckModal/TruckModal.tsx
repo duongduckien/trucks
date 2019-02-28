@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Modal, Container, Button, Row, Col } from 'react-bootstrap';
 import './styles.scss';
 
+// Components
+import AutoComplete from '../AutoComplete';
+
 // Languages
 import i18n from '../../../utilities/i18n';
 
@@ -67,24 +70,12 @@ export class TruckModal extends React.Component<IProps, {}> {
 
         const cargoTypes = this.props.trucks.cargoTypes;
 
-        if (cargoTypes.length > 0) {
-
-            return (
-                <select>
-                    {
-                        cargoTypes.map((item: any, index: any) => {
-                            return <option value={item.id} key={index}>{item.name}</option>;
-                        })
-                    }
-                </select>
-            );
-
-        }
-
         return (
-            <select>
-                <option value="">{i18n.t('NONE')}</option>
-            </select>
+            <AutoComplete
+                list={cargoTypes}
+                chips={true}
+                onSelectType={(item) => console.log(item)}
+            />
         );
 
     }

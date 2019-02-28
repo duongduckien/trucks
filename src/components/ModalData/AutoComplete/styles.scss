@@ -1,0 +1,49 @@
+.autocomplete {
+    input {
+        width: 200px;
+    }
+    .list-data {
+        position: absolute;
+        z-index: 1000;
+        width: 200px;
+        border: 1px solid #c8c8c8;
+        background-color: #ffffff;
+        -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        -moz-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 0;
+            li {
+                padding: 0.3em 0.5em;
+            }
+            li:hover {
+                background-color: #007ad9;
+                cursor: pointer;
+                color: #fff;
+            }
+            li:last-child {
+                padding-bottom: none;
+            }
+        }
+    }
+    .list-chips {
+        .chip {
+            background-color: #007ad9;
+            border-radius: 3px;
+            margin: 0.3em 0 0.3em 0;
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 90%;
+            i {
+                padding: 0 5px 0 5px;
+            }
+            i:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
