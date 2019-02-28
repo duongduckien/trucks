@@ -2,14 +2,23 @@ import * as types from '../actions/types';
 
 export interface ICommonState {
     showLoading: boolean;
-    modal: any;
+    modal: {
+        show: boolean,
+        data: {
+            component: string,
+            title: string,
+        },
+    };
 }
 
 export const COMMON_INITAL_STATE: ICommonState = {
     showLoading: false,
     modal: {
         show: false,
-        component: '',
+        data: {
+            component: '',
+            title: '',
+        },
     },
 };
 

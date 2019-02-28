@@ -12,4 +12,8 @@ export class API {
         return httpRequest.axiosInstance.get('/drivers');
     }
 
+    getTruckStatus() {
+        return httpRequest.axiosInstance.get('/truckStatus');
+    }
+
 }

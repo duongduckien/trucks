@@ -27,13 +27,16 @@ export class ModalData extends React.Component<IProps, {}> {
     hideModal() {
         this.props.actions.modal.hideModal({
             show: false,
-            component: '',
+            data: {
+                component: '',
+                title: '',
+            },
         });
     }
 
     getContent() {
         
-        const tagName = this.props.common.modal.component;
+        const tagName = this.props.common.modal.data.component;
 
         switch (tagName) {
             case 'TruckModal': {
