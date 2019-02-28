@@ -4,8 +4,8 @@ const httpRequest = new Middleware();
 
 export class API {
 
-    getTruckTypes() {
-        return httpRequest.axiosInstance.get('/truckTypes');
+    getCargoTypes() {
+        return httpRequest.axiosInstance.get('/cargoTypes');
     }
 
     getDrivers() {

@@ -22,6 +22,7 @@ export class TruckModal extends React.Component<IProps, {}> {
 
     componentDidMount() {
         this.props.actions.truck.getTruckStatus();
+        this.props.actions.truck.getCargoTypes();
     }
 
     hideModal() {
@@ -62,6 +63,32 @@ export class TruckModal extends React.Component<IProps, {}> {
 
     }
 
+    renderCargoTypes() {
+
+        const cargoTypes = this.props.trucks.cargoTypes;
+
+        if (cargoTypes.length > 0) {
+
+            return (
+                <select>
+                    {
+                        cargoTypes.map((item: any, index: any) => {
+                            return <option value={item.id} key={index}>{item.name}</option>;
+                        })
+                    }
+                </select>
+            );
+
+        }
+
+        return (
+            <select>
+                <option value="">{i18n.t('NONE')}</option>
+            </select>
+        );
+
+    }
+
     render() {
         return (
             <div className="truck-modal">
@@ -92,7 +119,7 @@ export class TruckModal extends React.Component<IProps, {}> {
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <input type="text" />
+                                    {this.renderCargoTypes()}
                                 </Col>
                             </Row>
                         </div>

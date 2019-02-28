@@ -30,11 +30,6 @@ export class ListTrucks extends React.Component<IProps, {}> {
         super(props);
     }
 
-    componentDidMount() {
-        this.props.actions.trucks.getTruckTypes();
-        this.props.actions.drivers.getDrivers();
-    }
-
     addTruck() {
 
         this.props.actions.modal.openModal({
