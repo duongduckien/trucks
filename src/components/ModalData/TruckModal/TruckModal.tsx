@@ -43,10 +43,15 @@ interface IState {
     };
 }
 
-export class TruckModal extends React.Component<IProps, {}> {
+export class TruckModal extends React.Component<IProps, IState> {
 
     state = {
-        formData: {},
+        formData: {
+            truckPlate: '',
+            cargoType: [],
+            price: 0,
+            status: 0,
+        },
     };
 
     constructor(props: any) {
