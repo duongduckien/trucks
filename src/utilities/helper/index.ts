@@ -15,4 +15,15 @@ export class Helper {
         return arrStatus;
     }
 
+    /**
+     * Function check is number
+     * @param  {any} value
+     */
+    isNumber(value: any) {
+        if (!isNaN(parseInt(value, 10))) {
+            return true;
+        }
+        return false;
+    }
+
 }

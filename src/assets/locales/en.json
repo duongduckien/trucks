@@ -23,5 +23,6 @@
     "PARKING_ADDRESS_MAX_LENGTH": "Parking address must be of maximum {{number}} characters!",
     "STATUS_REQUIRED": "Status is required!",
     "DESCRIPTION_MAX_LENGTH": "Description must be of maximum {{number}} characters!",
-    "NONE": "None"
+    "NONE": "None",
+    "TON": "ton"
 }

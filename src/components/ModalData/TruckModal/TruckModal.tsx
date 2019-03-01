@@ -8,6 +8,11 @@ import AutoComplete from '../AutoComplete';
 // Languages
 import i18n from '../../../utilities/i18n';
 
+// Utils
+import { Helper } from '../../../utilities/helper';
+
+const helper = new Helper();
+
 interface IProps {
     common: any;
     trucks: any;
@@ -138,6 +143,13 @@ export class TruckModal extends React.Component<IProps, {}> {
                 this.setState({ formData });
                 break;
             }
+            case 'truckType': {
+                if (helper.isNumber(value)) {
+                    const formData = { ...this.state.formData, ...{ truckType: parseInt(value, 10) }};
+                    this.setState({ formData });
+                }
+                break;
+            }
             default: {
                 break;
             }
@@ -198,7 +210,10 @@ export class TruckModal extends React.Component<IProps, {}> {
                                     <span>{i18n.t('TRUCK_TYPE')} </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <input type="text" />
+                                    <div className="number-with-unit">
+                                        <input type="number" min="0" onChange={(e) => this.onChangeData('truckType', e.target.value)} />
+                                        <span className="unit-text">{i18n.t('TON')}</span>
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
@@ -210,7 +225,7 @@ export class TruckModal extends React.Component<IProps, {}> {
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <input type="text" />
+                                    
                                 </Col>
                             </Row>
                         </div>

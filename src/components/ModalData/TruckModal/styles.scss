@@ -7,4 +7,12 @@
             color: red;
         }
     }
+    .number-with-unit {
+        span {
+            padding-left: 1em;
+        }
+        input {
+            width: 3em;
+        }
+    }
 }
