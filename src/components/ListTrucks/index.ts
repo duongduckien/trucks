@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as commonActions from '../../actions/common.action';
 import * as trucksActions from '../../actions/trucks.action';
-import * as driversActions from '../../actions/drivers';
+import * as driversActions from '../../actions/drivers.action';
 
 const mapStateToProps = (state: any) => {
     return {

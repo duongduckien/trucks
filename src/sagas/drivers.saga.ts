@@ -1,6 +1,6 @@
 import { put, call, fork, takeLatest, takeEvery } from 'redux-saga/effects';
 import * as types from '../actions/types';
-import * as driversActions from '../actions/drivers';
+import * as driversActions from '../actions/drivers.action';
 
 // Services
 import { API } from '../services/api';

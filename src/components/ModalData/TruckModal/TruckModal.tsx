@@ -11,13 +11,38 @@ import i18n from '../../../utilities/i18n';
 interface IProps {
     common: any;
     trucks: any;
+    drivers: any;
     actions: {
-        modal: any,
-        truck: any,
+        modal: any;
+        truck: any;
+        driver: any;
+    };
+}
+
+interface IState {
+    formData: {
+        truckPlate: string;
+        cargoType: number[];
+        driver?: number;
+        truckType?: number;
+        price: number;
+        dimension?: {
+            l: number;
+            w: number;
+            h: number;
+        };
+        parkingAddress?: string;
+        productionYear?: number;
+        status: number;
+        description?: string;
     };
 }
 
 export class TruckModal extends React.Component<IProps, {}> {
+
+    state = {
+        formData: {},
+    };
 
     constructor(props: any) {
         super(props);
@@ -26,6 +51,7 @@ export class TruckModal extends React.Component<IProps, {}> {
     componentDidMount() {
         this.props.actions.truck.getTruckStatus();
         this.props.actions.truck.getCargoTypes();
+        this.props.actions.driver.getDrivers();
     }
 
     hideModal() {
@@ -39,7 +65,7 @@ export class TruckModal extends React.Component<IProps, {}> {
     }
 
     storeData() {
-        console.log('store data');
+        console.log(this.state.formData);
     }
 
     renderStatus() {
@@ -74,9 +100,48 @@ export class TruckModal extends React.Component<IProps, {}> {
             <AutoComplete
                 list={cargoTypes}
                 chips={true}
-                onSelectType={(item) => console.log(item)}
+                onSelectType={(item) => this.onChangeData('cargoType', item)}
             />
         );
+
+    }
+
+    renderDrivers() {
+
+        const drivers = this.props.drivers.listDrivers;
+
+        return (
+            <AutoComplete
+                list={drivers}
+                chips={false}
+                onSelectType={(item) => this.onChangeData('driver', item.id)}
+            />
+        );
+
+    }
+
+    onChangeData(fieldName: string, value: any) {
+
+        switch (fieldName) {
+            case 'truckPlate': {
+                const formData = { ...this.state.formData, ...{ truckPlate: value }};
+                this.setState({ formData });
+                break;
+            }
+            case 'cargoType': {
+                const formData = { ...this.state.formData, ...{ cargoType: value }};
+                this.setState({ formData });
+                break;
+            }
+            case 'driver': {
+                const formData = { ...this.state.formData, ...{ driver: value }};
+                this.setState({ formData });
+                break;
+            }
+            default: {
+                break;
+            }
+        }
 
     }
 
@@ -98,7 +163,7 @@ export class TruckModal extends React.Component<IProps, {}> {
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <input type="text" />
+                                    <input type="text" onChange={(e) => this.onChangeData('truckPlate', e.target.value)} />
                                 </Col>
                             </Row>
                         </div>
@@ -122,7 +187,7 @@ export class TruckModal extends React.Component<IProps, {}> {
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <input type="text" />
+                                    {this.renderDrivers()}
                                 </Col>
                             </Row>
                         </div>

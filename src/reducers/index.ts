@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { commonReducer, ICommonState } from './common.reducer';
 import { trucksReducer, ITrucksState } from './truck.reducer';
-import { driversReducer, IDriversState } from './driversReducer';
+import { driversReducer, IDriversState } from './driver.reducer';
 
 export interface IState {
     common: ICommonState;
