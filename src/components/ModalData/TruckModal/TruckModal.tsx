@@ -5,6 +5,7 @@ import './styles.scss';
 // Components
 import AutoComplete from '../AutoComplete';
 import InputPrice from '../InputPrice';
+import InputDimension from '../InputDimension';
 
 // Languages
 import i18n from '../../../utilities/i18n';
@@ -154,6 +155,11 @@ export class TruckModal extends React.Component<IProps, IState> {
                 this.setState({ formData });
                 break;
             }
+            case 'dimension': {
+                const formData = { ...this.state.formData, ...{ dimension: value } };
+                this.setState({ formData });
+                break;
+            }
             case 'truckType': {
                 if (helper.isNumber(value)) {
                     const formData = { ...this.state.formData, ...{ truckType: parseInt(value, 10) } };
@@ -247,7 +253,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     <span>{i18n.t('DIMENSION')} </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <input type="text" />
+                                    <InputDimension onDimension={(value) => this.onChangeData('dimension', value)} />
                                 </Col>
                             </Row>
                         </div>

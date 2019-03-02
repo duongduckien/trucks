@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Modal, Container, Row, Col, Button } from 'react-bootstrap';
 import './styles.scss';
 
 // Utilities
