@@ -78,15 +78,17 @@ export class TruckModal extends React.Component<IProps, IState> {
     }
 
     storeData() {
-        console.log(this.state.formData);
+        const formData = this.setDefautStatus(this.state.formData);
+        console.log(formData);
     }
 
-    setDefautStatus() {
+    setDefautStatus(formData: any) {
         const status = this.props.trucks.truckStatus;
-        if (status.length > 0) {
-            const formData = { ...this.state.formData, ...{ truckPlate: status[0]['id'] } };
-            this.setState({ formData });
+        if (status.length > 0 && formData['status'] === 0) {
+            formData['status'] = status[0]['id'];
+            return formData;
         }
+        return formData;
     }
 
     renderStatus() {
