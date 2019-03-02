@@ -4,11 +4,12 @@ import './styles.scss';
 
 // Components
 import AutoComplete from '../AutoComplete';
+import InputPrice from '../InputPrice';
 
 // Languages
 import i18n from '../../../utilities/i18n';
 
-// Utils
+// Utilities
 import { Helper } from '../../../utilities/helper';
 
 const helper = new Helper();
@@ -134,23 +135,23 @@ export class TruckModal extends React.Component<IProps, IState> {
 
         switch (fieldName) {
             case 'truckPlate': {
-                const formData = { ...this.state.formData, ...{ truckPlate: value }};
+                const formData = { ...this.state.formData, ...{ truckPlate: value } };
                 this.setState({ formData });
                 break;
             }
             case 'cargoType': {
-                const formData = { ...this.state.formData, ...{ cargoType: value }};
+                const formData = { ...this.state.formData, ...{ cargoType: value } };
                 this.setState({ formData });
                 break;
             }
             case 'driver': {
-                const formData = { ...this.state.formData, ...{ driver: value }};
+                const formData = { ...this.state.formData, ...{ driver: value } };
                 this.setState({ formData });
                 break;
             }
             case 'truckType': {
                 if (helper.isNumber(value)) {
-                    const formData = { ...this.state.formData, ...{ truckType: parseInt(value, 10) }};
+                    const formData = { ...this.state.formData, ...{ truckType: parseInt(value, 10) } };
                     this.setState({ formData });
                 }
                 break;
@@ -230,7 +231,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    
+                                    <InputPrice onPrice={(value) => ''} />
                                 </Col>
                             </Row>
                         </div>

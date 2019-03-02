@@ -26,4 +26,12 @@ export class Helper {
         return false;
     }
 
+    /**
+     * Function reverse a string
+     * @param  {string} str
+     */
+    reverseString(str: string) {
+        return str.split('').reduce((ret, character) => (character + ret));
+    }
+
 }

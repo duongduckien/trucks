@@ -9,7 +9,7 @@ import i18n from '../../utilities/i18n';
 import { Helper } from '../../utilities/helper';
 
 // Components
-import AutoComplete from '../AutoComplete';
+// import AutoComplete from '../AutoComplete';
 
 interface IProps {
     common: any;
@@ -127,31 +127,9 @@ export class ModalForm extends React.Component<IProps, IState> {
             }
             case 'autoCompleteChips': {
                 const listData = (v.data && Array.isArray(v.data)) ? v.data : [];
-                return (
-                    <AutoComplete
-                        list={listData}
-                        chips={true}
-                        onSelectType={(item) => (Array.isArray(v.data)
-                            ? this.handleFormData(v.alias, item, 'autoCompleteChips') :
-                            (item.id
-                                ? this.handleFormData(v.alias, item.id, 'autoCompleteChips')
-                                : this.handleFormData(v.alias, '', 'autoCompleteChips')))}
-                    />
-                );
             }
             case 'autoComplete': {
                 const listData = (v.data && Array.isArray(v.data)) ? v.data : [];
-                return (
-                    <AutoComplete
-                        list={listData}
-                        chips={false}
-                        onSelectType={(item) => (Array.isArray(v.data)
-                            ? this.handleFormData(v.alias, item, 'autoComplete') :
-                            (item.id
-                                ? this.handleFormData(v.alias, item.id, 'autoComplete')
-                                : this.handleFormData(v.alias, '', 'autoComplete')))}
-                    />
-                );
             }
             case 'textarea': {
                 return (
