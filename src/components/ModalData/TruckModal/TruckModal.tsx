@@ -6,6 +6,7 @@ import './styles.scss';
 import AutoComplete from '../AutoComplete';
 import InputPrice from '../InputPrice';
 import InputDimension from '../InputDimension';
+import InputSelect from '../InputSelect';
 
 // Languages
 import i18n from '../../../utilities/i18n';
@@ -150,6 +151,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                 this.setState({ formData });
                 break;
             }
+            case 'truckType': {
+                if (helper.isNumber(value)) {
+                    const formData = { ...this.state.formData, ...{ truckType: parseInt(value, 10) } };
+                    this.setState({ formData });
+                }
+                break;
+            }
             case 'price': {
                 const formData = { ...this.state.formData, ...{ price: value } };
                 this.setState({ formData });
@@ -160,10 +168,16 @@ export class TruckModal extends React.Component<IProps, IState> {
                 this.setState({ formData });
                 break;
             }
-            case 'truckType': {
+            case 'productionYear': {
                 if (helper.isNumber(value)) {
-                    const formData = { ...this.state.formData, ...{ truckType: parseInt(value, 10) } };
+                    const formData = { ...this.state.formData, ...{ productionYear: value } };
                     this.setState({ formData });
+                } else {
+                    const formData = this.state.formData;
+                    if (formData['productionYear']) {
+                        delete formData['productionYear'];
+                        this.setState({ formData });
+                    }
                 }
                 break;
             }
@@ -276,7 +290,17 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     <span>{i18n.t('PRODUCTION_YEAR')}</span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <input type="text" />
+                                    <select onChange={(e) => this.onChangeData('productionYear', parseInt(e.target.value, 10))}>
+                                        {
+                                            helper.listYears().map((year: any, index: number) => {
+                                                if (year === 'None') {
+                                                    return <option value="" key={index}>{i18n.t('NONE')}</option>;
+                                                } else {
+                                                    return <option value={year} key={index}>{year}</option>;
+                                                }
+                                            })
+                                        }
+                                    </select>
                                 </Col>
                             </Row>
                         </div>
