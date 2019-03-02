@@ -81,13 +81,21 @@ export class TruckModal extends React.Component<IProps, IState> {
         console.log(this.state.formData);
     }
 
+    setDefautStatus() {
+        const status = this.props.trucks.truckStatus;
+        if (status.length > 0) {
+            const formData = { ...this.state.formData, ...{ truckPlate: status[0]['id'] } };
+            this.setState({ formData });
+        }
+    }
+
     renderStatus() {
 
         const status = this.props.trucks.truckStatus;
 
         if (status.length > 0) {
             return (
-                <select>
+                <select onChange={(e) => this.onChangeData('status', e.target.value)}>
                     {
                         status.map((item: any, index: any) => {
                             return <option value={item.id} key={index}>{item.name}</option>;
@@ -106,9 +114,7 @@ export class TruckModal extends React.Component<IProps, IState> {
     }
 
     renderCargoTypes() {
-
         const cargoTypes = this.props.trucks.cargoTypes;
-
         return (
             <AutoComplete
                 list={cargoTypes}
@@ -116,13 +122,10 @@ export class TruckModal extends React.Component<IProps, IState> {
                 onSelectType={(item) => this.onChangeData('cargoType', item)}
             />
         );
-
     }
 
     renderDrivers() {
-
         const drivers = this.props.drivers.listDrivers;
-
         return (
             <AutoComplete
                 list={drivers}
@@ -130,7 +133,22 @@ export class TruckModal extends React.Component<IProps, IState> {
                 onSelectType={(item) => this.onChangeData('driver', item.id)}
             />
         );
+    }
 
+    renderProductionYear() {
+        return (
+            <select onChange={(e) => this.onChangeData('productionYear', parseInt(e.target.value, 10))}>
+                {
+                    helper.listYears().map((year: any, index: number) => {
+                        if (year === 'None') {
+                            return <option value="" key={index}>{i18n.t('NONE')}</option>;
+                        } else {
+                            return <option value={year} key={index}>{year}</option>;
+                        }
+                    })
+                }
+            </select>
+        );
     }
 
     onChangeData(fieldName: string, value: any) {
@@ -178,6 +196,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                         delete formData['productionYear'];
                         this.setState({ formData });
                     }
+                }
+                break;
+            }
+            case 'status': {
+                if (helper.isNumber(value)) {
+                    const formData = { ...this.state.formData, ...{ status: parseInt(value, 10) } };
+                    this.setState({ formData });
                 }
                 break;
             }
@@ -290,17 +315,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     <span>{i18n.t('PRODUCTION_YEAR')}</span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <select onChange={(e) => this.onChangeData('productionYear', parseInt(e.target.value, 10))}>
-                                        {
-                                            helper.listYears().map((year: any, index: number) => {
-                                                if (year === 'None') {
-                                                    return <option value="" key={index}>{i18n.t('NONE')}</option>;
-                                                } else {
-                                                    return <option value={year} key={index}>{year}</option>;
-                                                }
-                                            })
-                                        }
-                                    </select>
+                                    {this.renderProductionYear()}
                                 </Col>
                             </Row>
                         </div>
