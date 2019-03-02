@@ -36,7 +36,10 @@ export class Validation {
 
             },
             truckType: {
-
+                number: {
+                    pattern: /[0-9]/,
+                    message: i18n.t('PRICE_NUMBER'),
+                },
             },
             price: {
                 required: {

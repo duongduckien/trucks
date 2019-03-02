@@ -2,6 +2,12 @@
     outline: none;
 }
 .modal-form-row {
+    input {
+        border: 1px solid #a0a0a0;
+        border-radius: 5px;
+        height: 3em;
+        font-size: 0.8em;
+    }
     margin: 0 0 1.5em 0;
     span.unit-text {
         font-size: 13px;
@@ -19,6 +25,13 @@
         }
         input {
             width: 3em;
+        }
+    }
+    .msg-error {
+        span {
+            color: red;
+            font-size: 0.8em;
+            font-style: italic;
         }
     }
 }

@@ -44,6 +44,18 @@ interface IState {
         status: number;
         description?: string;
     };
+    errorMessage: {
+        truckPlate: string;
+        cargoType: string;
+        driver: string;
+        truckType: string;
+        price: string;
+        dimension: string;
+        parkingAddress: string;
+        productionYear: string;
+        status: string;
+        description: string;
+    };
 }
 
 export class TruckModal extends React.Component<IProps, IState> {
@@ -54,6 +66,18 @@ export class TruckModal extends React.Component<IProps, IState> {
             cargoType: [],
             price: 0,
             status: 0,
+        },
+        errorMessage: {
+            truckPlate: '',
+            cargoType: '',
+            driver: '',
+            truckType: '',
+            price: '',
+            dimension: '',
+            parkingAddress: '',
+            productionYear: '',
+            status: '',
+            description: '',
         },
     };
 
@@ -245,6 +269,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     <input type="text" onChange={(e) => this.onChangeData('truckPlate', e.target.value)} />
                                 </Col>
                             </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.truckPlate}</span>
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
 
                         <div className="modal-form-row">
@@ -257,6 +288,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     {this.renderCargoTypes()}
                                 </Col>
                             </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.cargoType}</span>
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
 
                         <div className="modal-form-row">
@@ -267,6 +305,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                 </Col>
                                 <Col xs={12} md={8}>
                                     {this.renderDrivers()}
+                                </Col>
+                            </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.driver}</span>
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
@@ -283,6 +328,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     </div>
                                 </Col>
                             </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.truckType}</span>
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
 
                         <div className="modal-form-row">
@@ -295,6 +347,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     <InputPrice onPrice={(value) => this.onChangeData('price', value)} />
                                 </Col>
                             </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.price}</span>
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
 
                         <div className="modal-form-row">
@@ -304,6 +363,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                 </Col>
                                 <Col xs={12} md={8}>
                                     <InputDimension onDimension={(value) => this.onChangeData('dimension', value)} />
+                                </Col>
+                            </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.dimension}</span>
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
@@ -321,6 +387,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     />
                                 </Col>
                             </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.parkingAddress}</span>
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
 
                         <div className="modal-form-row">
@@ -330,6 +403,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                 </Col>
                                 <Col xs={12} md={8}>
                                     {this.renderProductionYear()}
+                                </Col>
+                            </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.productionYear}</span>
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
@@ -342,6 +422,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                 </Col>
                                 <Col xs={12} md={8}>
                                     {this.renderStatus()}
+                                </Col>
+                            </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.status}</span>
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
@@ -357,6 +444,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                                         onTextArea={(value) => this.onChangeData('description', value)}
                                         maxLength={200}
                                     />
+                                </Col>
+                            </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={{ span: 8, offset: 4 }}>
+                                    <div className="msg-error">
+                                        <span>{this.state.errorMessage.description}</span>
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
