@@ -188,6 +188,11 @@ export class TruckModal extends React.Component<IProps, IState> {
                 this.setState({ formData });
                 break;
             }
+            case 'parkingAddress': {
+                const formData = { ...this.state.formData, ...{ parkingAddress: value } };
+                this.setState({ formData });
+                break;
+            }
             case 'productionYear': {
                 if (helper.isNumber(value)) {
                     const formData = { ...this.state.formData, ...{ productionYear: value } };
@@ -233,7 +238,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('TRUCK_PLATE')} <span className="modal-form-require">*</span>
+                                    <span className="label">{i18n.t('TRUCK_PLATE')} <span className="modal-form-require">*</span>
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
@@ -245,7 +250,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('CARGO_TYPE')} <span className="modal-form-require">*</span>
+                                    <span className="label">{i18n.t('CARGO_TYPE')} <span className="modal-form-require">*</span>
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
@@ -257,7 +262,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('DRIVER')} <span className="modal-form-require">*</span>
+                                    <span className="label">{i18n.t('DRIVER')} <span className="modal-form-require">*</span>
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
@@ -269,7 +274,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('TRUCK_TYPE')} </span>
+                                    <span className="label">{i18n.t('TRUCK_TYPE')} </span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     <div className="number-with-unit">
@@ -283,7 +288,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('PRICE')} <span className="modal-form-require">*</span>
+                                    <span className="label">{i18n.t('PRICE')} <span className="modal-form-require">*</span>
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
@@ -295,7 +300,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('DIMENSION')} </span>
+                                    <span className="label">{i18n.t('DIMENSION')} </span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     <InputDimension onDimension={(value) => this.onChangeData('dimension', value)} />
@@ -306,11 +311,14 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('PARKING_ADDRESS')} <span className="modal-form-require">*</span>
+                                    <span className="label">{i18n.t('PARKING_ADDRESS')} <span className="modal-form-require">*</span>
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <input type="text" />
+                                    <InputTextArea 
+                                        onTextArea={(value) => this.onChangeData('parkingAddress', value)}
+                                        maxLength={500}
+                                    />
                                 </Col>
                             </Row>
                         </div>
@@ -318,7 +326,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('PRODUCTION_YEAR')}</span>
+                                    <span className="label">{i18n.t('PRODUCTION_YEAR')}</span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     {this.renderProductionYear()}
@@ -329,7 +337,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('STATUS')} <span className="modal-form-require">*</span>
+                                    <span className="label">{i18n.t('STATUS')} <span className="modal-form-require">*</span>
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
@@ -341,13 +349,13 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span>{i18n.t('DESCRIPTION')} <span className="modal-form-require">*</span>
+                                    <span className="label">{i18n.t('DESCRIPTION')} <span className="modal-form-require">*</span>
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     <InputTextArea 
                                         onTextArea={(value) => this.onChangeData('description', value)}
-                                        maxLength={5}
+                                        maxLength={200}
                                     />
                                 </Col>
                             </Row>

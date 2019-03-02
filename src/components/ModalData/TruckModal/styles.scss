@@ -3,10 +3,13 @@
 }
 .modal-form-row {
     margin: 0 0 1.5em 0;
-    span {
+    span.unit-text {
+        font-size: 13px;
+    }
+    span.label {
         font-size: 13px;
         font-weight: bold;
-        .modal-form-require {
+        span.modal-form-require {
             color: red;
         }
     }

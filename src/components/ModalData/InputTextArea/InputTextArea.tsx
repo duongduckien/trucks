@@ -1,9 +1,6 @@
 import * as React from 'react';
 import './styles.scss';
 
-// Languages
-import i18n from '../../../utilities/i18n';
-
 // Utilities
 import { Helper } from '../../../utilities/helper';
 
