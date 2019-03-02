@@ -149,6 +149,11 @@ export class TruckModal extends React.Component<IProps, IState> {
                 this.setState({ formData });
                 break;
             }
+            case 'price': {
+                const formData = { ...this.state.formData, ...{ price: value } };
+                this.setState({ formData });
+                break;
+            }
             case 'truckType': {
                 if (helper.isNumber(value)) {
                     const formData = { ...this.state.formData, ...{ truckType: parseInt(value, 10) } };
@@ -231,7 +236,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <InputPrice onPrice={(value) => ''} />
+                                    <InputPrice onPrice={(value) => this.onChangeData('price', value)} />
                                 </Col>
                             </Row>
                         </div>

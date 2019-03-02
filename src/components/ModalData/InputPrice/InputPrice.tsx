@@ -32,14 +32,18 @@ export class InputPrice extends React.Component<IProps, {}> {
         if (reg.test(value) || value === '') {
             const data = this.addSymbol(value, ',');
             this.setState({ price: data });
-            this.props.onPrice(data);
+            this.props.onPrice(parseInt(this.replaceChar(data), 10));
         }
 
     }
 
+    replaceChar(str: string) {
+        return str.replace(/,/g, '');
+    }
+
     addSymbol(data: string, symbol: string) {
 
-        const newData = data.replace(/,/g, '');
+        const newData = this.replaceChar(data);
         const length = newData.length;
 
         if (length > 3) {
