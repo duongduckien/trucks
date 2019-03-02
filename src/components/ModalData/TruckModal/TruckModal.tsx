@@ -6,7 +6,7 @@ import './styles.scss';
 import AutoComplete from '../AutoComplete';
 import InputPrice from '../InputPrice';
 import InputDimension from '../InputDimension';
-import InputSelect from '../InputSelect';
+import InputTextArea from '../InputTextArea';
 
 // Languages
 import i18n from '../../../utilities/i18n';
@@ -208,6 +208,10 @@ export class TruckModal extends React.Component<IProps, IState> {
                 }
                 break;
             }
+            case 'description': {
+                const formData = { ...this.state.formData, ...{ description: value } };
+                this.setState({ formData });
+            }
             default: {
                 break;
             }
@@ -341,7 +345,10 @@ export class TruckModal extends React.Component<IProps, IState> {
                                     </span>
                                 </Col>
                                 <Col xs={12} md={8}>
-                                    <textarea></textarea>
+                                    <InputTextArea 
+                                        onTextArea={(value) => this.onChangeData('description', value)}
+                                        maxLength={5}
+                                    />
                                 </Col>
                             </Row>
                         </div>
