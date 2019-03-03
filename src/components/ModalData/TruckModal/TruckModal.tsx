@@ -108,15 +108,17 @@ export class TruckModal extends React.Component<IProps, IState> {
         const formData = this.setDefautStatus(this.state.formData);
         const rules = validation.truckRules;
         const errMsg = validation.validate(rules, formData);
-        const errorsState = this.state.errorMessage;
+        const errorMessage = this.state.errorMessage;
 
-        if (Object.keys(errorsState).length > 0) {
-            for (const key in errorsState) {
-                if (Object.keys(errMsg).length > 0 && errMsg[key] && errMsg[key] !== '') {
-                    errorsState[key] = errMsg[key];
+        if (Object.keys(errMsg).length > 0) {
+            if (Object.keys(errorMessage).length > 0) {
+                for (const key in errorMessage) {
+                    if (Object.keys(errMsg).length > 0 && errMsg[key] && errMsg[key] !== '') {
+                        errorMessage[key] = errMsg[key];
+                    }
                 }
+                this.setState({ errorMessage });
             }
-            this.setState({ errorMessage: errorsState });
         } else {
             console.log('Done');
         }
