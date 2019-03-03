@@ -13,8 +13,10 @@ import i18n from '../../../utilities/i18n';
 
 // Utilities
 import { Helper } from '../../../utilities/helper';
+import { Validation } from '../../../utilities/validation';
 
 const helper = new Helper();
+const validation = new Validation();
 
 interface IProps {
     common: any;
@@ -103,7 +105,8 @@ export class TruckModal extends React.Component<IProps, IState> {
 
     storeData() {
         const formData = this.setDefautStatus(this.state.formData);
-        console.log(formData);
+        const rules = validation.truckRules;
+        validation.validate(rules, formData);
     }
 
     setDefautStatus(formData: any) {
@@ -300,8 +303,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span className="label">{i18n.t('DRIVER')} <span className="modal-form-require">*</span>
-                                    </span>
+                                    <span className="label">{i18n.t('DRIVER')}</span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     {this.renderDrivers()}
@@ -319,7 +321,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span className="label">{i18n.t('TRUCK_TYPE')} </span>
+                                    <span className="label">{i18n.t('TRUCK_TYPE')}</span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     <div className="number-with-unit">
@@ -359,7 +361,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span className="label">{i18n.t('DIMENSION')} </span>
+                                    <span className="label">{i18n.t('DIMENSION')}</span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     <InputDimension onDimension={(value) => this.onChangeData('dimension', value)} />
@@ -377,8 +379,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span className="label">{i18n.t('PARKING_ADDRESS')} <span className="modal-form-require">*</span>
-                                    </span>
+                                    <span className="label">{i18n.t('PARKING_ADDRESS')}</span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     <InputTextArea 
@@ -436,8 +437,7 @@ export class TruckModal extends React.Component<IProps, IState> {
                         <div className="modal-form-row">
                             <Row className="show-grid">
                                 <Col xs={12} md={4}>
-                                    <span className="label">{i18n.t('DESCRIPTION')} <span className="modal-form-require">*</span>
-                                    </span>
+                                    <span className="label">{i18n.t('DESCRIPTION')}</span>
                                 </Col>
                                 <Col xs={12} md={8}>
                                     <InputTextArea 

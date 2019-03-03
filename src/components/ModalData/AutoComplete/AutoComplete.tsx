@@ -43,7 +43,7 @@ export class AutoComplete extends React.Component<IProps, IState> {
             this.setState({ listMatch });
         } else {
             this.setState({ listMatch: [] });
-            this.props.onSelectType('');
+            this.props.onSelectType(this.state.listChips);
         }
 
     }
