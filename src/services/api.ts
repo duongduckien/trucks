@@ -16,4 +16,12 @@ export class API {
         return httpRequest.axiosInstance.get('/truckStatus');
     }
 
+    createTruck(params: any) {
+        return httpRequest.axiosInstance.post('/trucks', params);
+    }
+
+    getTrucks() {
+        return httpRequest.axiosInstance.get('/trucks');
+    }
+
 }

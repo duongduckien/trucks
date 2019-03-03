@@ -1,12 +1,12 @@
 export interface ITrucksData {
     truckPlate: string;
-    cargoType: string;
-    driver: string;
-    truckType: string;
-    price: string;
-    dimension: string;
-    parkingAddress: string;
-    productionYear: string;
-    status: string;
-    description: string;
+    cargoType: number[];
+    driver?: number;
+    truckType?: number;
+    price: number;
+    dimension?: string;
+    parkingAddress?: string;
+    productionYear?: number;
+    status: number;
+    description?: string;
 }

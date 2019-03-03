@@ -45,9 +45,47 @@ export function* watchGetTruckStatusRequest() {
     yield takeEvery(types.GET_TRUCK_STATUS, getTruckStatus);
 }
 
+export function* createTruck(action: any) {
+
+    try {
+
+        const result = yield call(api.createTruck, action['payload']);
+        yield call(getTrucks);
+
+    } catch (e) {
+        console.log(e);
+    }
+
+}
+
+export function* watchCreateTruck() {
+    yield takeLatest(types.CREATE_TRUCK, createTruck);
+}
+
+export function* getTrucks() {
+
+    try {
+
+        const result = yield call(api.getTrucks);
+        yield put(trucksActions.getTrucksSuccess({
+            items: result.data,
+        }));
+
+    } catch (e) {
+        console.log(e);
+    }
+
+}
+
+export function* watchGetTrucks() {
+    yield takeEvery(types.GET_TRUCKS, getTrucks);
+}
+
 const trucksSaga = [
     fork(watchGetTruckTypesRequest),
     fork(watchGetTruckStatusRequest),
+    fork(watchCreateTruck),
+    fork(watchGetTrucks),
 ];
 
 export default trucksSaga;

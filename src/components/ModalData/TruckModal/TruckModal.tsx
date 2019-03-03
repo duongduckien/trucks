@@ -120,7 +120,8 @@ export class TruckModal extends React.Component<IProps, IState> {
                 this.setState({ errorMessage });
             }
         } else {
-            console.log('Done');
+            console.log(formData);
+            this.props.actions.truck.createTruck(formData);
         }
 
     }
