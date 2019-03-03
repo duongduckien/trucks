@@ -104,9 +104,23 @@ export class TruckModal extends React.Component<IProps, IState> {
     }
 
     storeData() {
+
         const formData = this.setDefautStatus(this.state.formData);
         const rules = validation.truckRules;
-        validation.validate(rules, formData);
+        const errMsg = validation.validate(rules, formData);
+        const errorsState = this.state.errorMessage;
+
+        if (Object.keys(errorsState).length > 0) {
+            for (const key in errorsState) {
+                if (Object.keys(errMsg).length > 0 && errMsg[key] && errMsg[key] !== '') {
+                    errorsState[key] = errMsg[key];
+                }
+            }
+            this.setState({ errorMessage: errorsState });
+        } else {
+            console.log('Done');
+        }
+
     }
 
     setDefautStatus(formData: any) {
@@ -180,7 +194,15 @@ export class TruckModal extends React.Component<IProps, IState> {
         );
     }
 
+    clearErrorMsg(fieldName: string) {
+        const errorMessage = this.state.errorMessage;
+        errorMessage[fieldName] = '';
+        this.setState({ errorMessage });
+    }
+
     onChangeData(fieldName: string, value: any) {
+
+        this.clearErrorMsg(fieldName);
 
         switch (fieldName) {
             case 'truckPlate': {

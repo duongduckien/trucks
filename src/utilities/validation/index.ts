@@ -77,17 +77,6 @@ export class Validation {
         };
     }
 
-    // cargoType: (3) [1, 8, 7]
-    // description: "dasdsafasf"
-    // dimension: {l: 4, w: 3, h: 5}
-    // driver: 1
-    // parkingAddress: "sadsadas"
-    // price: 187878758
-    // productionYear: 1970
-    // status: 2
-    // truckPlate: "asdaas"
-    // truckType: 4
-
     validate(rules: any, value: any) {
 
         // value = {
@@ -136,9 +125,7 @@ export class Validation {
 
         }
 
-        console.log(rules);
-        console.log(value);
-        console.log(errorMsg);
+        return errorMsg;
 
     }
 
