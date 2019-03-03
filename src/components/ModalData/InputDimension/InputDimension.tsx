@@ -62,6 +62,32 @@ export class InputDimension extends React.Component<IProps, IState> {
                 }
             }
 
+        } else if (value.trim() === '') {
+
+            switch (type) {
+                case 'l': {
+                    const dimension = { ...this.state.dimension, ...{ l: 0 } };
+                    this.setState({ dimension });
+                    this.props.onDimension(dimension);
+                    break;
+                }
+                case 'w': {
+                    const dimension = { ...this.state.dimension, ...{ w: 0 } };
+                    this.setState({ dimension });
+                    this.props.onDimension(dimension);
+                    break;
+                }
+                case 'h': {
+                    const dimension = { ...this.state.dimension, ...{ h: 0 } };
+                    this.setState({ dimension });
+                    this.props.onDimension(dimension);
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+
         }
 
     }
