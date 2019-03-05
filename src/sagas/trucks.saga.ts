@@ -66,9 +66,76 @@ export function* getTrucks() {
 
     try {
 
-        const result = yield call(api.getTrucks);
+        const trucksResult = yield call(api.getTrucks);
+        const cargoTypeResult = yield call(api.getCargoTypes);
+        const driversResult = yield call(api.getDrivers);
+        const trucksStatus = yield call(api.getTruckStatus);
+
+        if (trucksResult.data.length > 0) {
+            for (const truck of trucksResult.data) {
+
+                if (truck['cargoType']) {
+
+                    if (Array.isArray(truck['cargoType']) && truck['cargoType'].length > 0) {
+
+                        let cargoTypeStr = '';
+                        let cnt = 0;
+                        for (const typeId of truck['cargoType']) {
+                            cnt++;
+                            for (const type of cargoTypeResult.data) {
+                                if (type['id'] === typeId) {
+                                    if (cnt === 1) {
+                                        cargoTypeStr += (truck['cargoType'].length === 1) ? `${type['name']}` : `${type['name']},`;
+                                    } else if (cnt === truck['cargoType'].length) {
+                                        cargoTypeStr += ` ${type['name']}`;
+                                    } else {
+                                        cargoTypeStr += ` ${type['name']},`;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+
+                        truck['cargoTypeShow'] = cargoTypeStr;
+
+                    } else {
+                        truck['cargoTypeShow'] = '';
+                    }
+
+                } 
+                
+                if (truck['driver']) {
+                    if (driversResult.data.length > 0) {
+                        for (const driver of driversResult.data) {
+                            if (driver['id'] === truck['driver']) {
+                                truck['driverShow'] = driver['name'];
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (truck['status']) {
+                    if (trucksStatus.data.length > 0) {
+                        for (const status of trucksStatus.data) {
+                            if (status['id'] === truck['status']) {
+                                truck['statusShow'] = status['name'];
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (truck['dimension']) {
+                    truck['dimensionShow'] = `${truck['dimension']['l']} - ${truck['dimension']['w']} - ${truck['dimension']['h']}`;
+                }
+
+                console.log(truck);
+            }
+        }
+
         yield put(trucksActions.getTrucksSuccess({
-            items: result.data,
+            items: trucksResult.data,
         }));
 
     } catch (e) {

@@ -21,7 +21,6 @@ export function trucksReducer(state = TRUCKS_INITAL_STATE, action: any): ITrucks
             return { ...state, ...{ truckStatus: action.payload.items } };
         }
         case types.GET_TRUCKS_SUCCESS: {
-            console.log(action);
             return { ...state, ...{ listTrucks: action.payload.items } };
         }
         default: {

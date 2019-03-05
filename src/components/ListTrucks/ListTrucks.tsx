@@ -17,10 +17,8 @@ interface IProps {
         drivers: any,
     };
     trucks: {
-        truckTypes: any,
-    };
-    drivers: {
-        listDrivers: any,
+        listTrucks: any,
+        cargoTypes: any,
     };
 }
 
@@ -30,8 +28,11 @@ export class ListTrucks extends React.Component<IProps, {}> {
         super(props);
     }
 
-    addTruck() {
+    componentDidMount() {
+        this.props.actions.trucks.getTrucks();
+    }
 
+    addTruck() {
         this.props.actions.modal.openModal({
             show: true,
             data: {
@@ -39,42 +40,20 @@ export class ListTrucks extends React.Component<IProps, {}> {
                 title: i18n.t('ADD_TRUCK'),
             },
         });
-
-        // const truckTypes = this.props.trucks.truckTypes;
-        // const listDrivers = this.props.drivers.listDrivers;
-        // const truckShowType = {
-        //     unit: 'ton',
-        // };
-
-        // const formData: IModalFormData[] = [
-        //     { label: i18n.t('TRUCK_PLATE'), alias: 'truckPlate', type: 'text', value: '', require: true },
-        //     { label: i18n.t('CARGO_TYPE'), alias: 'cargoType', type: 'autoCompleteChips', value: '', require: true, data: truckTypes },
-        //     { label: i18n.t('DRIVER'), alias: 'driver', type: 'autoComplete', value: '', require: true, data: listDrivers },
-        //     { label: i18n.t('TRUCK_TYPE'), alias: 'truckType', type: 'numberWithUnit', value: '', require: false, showType: truckShowType },
-        //     { label: i18n.t('PRICE'), alias: 'price', type: 'numberCurrencyFormat', value: '', require: true },
-        //     { label: i18n.t('DIMENSION'), alias: 'dimension', type: 'text', value: '', require: false },
-        //     { label: i18n.t('PARKING_ADDRESS'), alias: 'parkingAddress', type: 'text', value: '', require: true },
-        //     { label: i18n.t('PRODUCTION_YEAR'), alias: 'productionYear', type: 'select', value: 'year', require: false },
-        //     { label: i18n.t('STATUS'), alias: 'status', type: 'select', value: 'status', require: true },
-        //     { label: i18n.t('DESCRIPTION'), alias: 'description', type: 'textarea', value: '', require: true },
-        // ];
-
-        // this.props.actions.modalForm.openModalForm({
-        //     show: true,
-        //     data: {
-        //         title: i18n.t('ADD_TRUCK'),
-        //         form: formData,
-        //     },
-        // });
-
     }
 
-    editTruck() {
-        console.log('Edit truck');
+    editTruck(id: any) {
+        console.log(`Edit truck ${id}`);
     }
 
-    deleteTruck() {
-        console.log('Delete truck');
+    deleteTruck(id: any) {
+        console.log(`Delete truck ${id}`);
+    }
+
+    renderCargoType(data: any) {
+        return (
+            <span></span>
+        );
     }
 
     render() {
@@ -107,43 +86,36 @@ export class ListTrucks extends React.Component<IProps, {}> {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>
-                                <i
-                                    onClick={() => this.editTruck()}
-                                    className="fa fa-pencil-square-o"
-                                    aria-hidden="true"
-                                ></i>
-                                <i
-                                    onClick={() => this.deleteTruck()}
-                                    className="fa fa-trash-o"
-                                    aria-hidden="true"
-                                ></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td></td>
-                        </tr>
+                        {
+                            this.props.trucks.listTrucks.map((truck: any, index: number) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{truck['truckPlate'] ? truck['truckPlate'] : ''}</td>
+                                        <td>{truck['cargoTypeShow'] ? truck['cargoTypeShow'] : ''}</td>
+                                        <td>{truck['driverShow'] ? truck['driverShow'] : ''}</td>
+                                        <td>{truck['truckType'] ? truck['truckType'] : ''}</td>
+                                        <td>{truck['price'] ? truck['price'] : ''}</td>
+                                        <td>{truck['dimensionShow'] ? truck['dimensionShow'] : ''}</td>
+                                        <td>{truck['parkingAddress'] ? truck['parkingAddress'] : ''}</td>
+                                        <td>{truck['productionYear'] ? truck['productionYear'] : ''}</td>
+                                        <td>{truck['statusShow'] ? truck['statusShow'] : ''}</td>
+                                        <td>{truck['description'] ? truck['description'] : ''}</td>
+                                        <td>
+                                            <i
+                                                onClick={() => this.editTruck(truck['id'])}
+                                                className="fa fa-pencil-square-o"
+                                                aria-hidden="true"
+                                            ></i>
+                                            <i
+                                                onClick={() => this.deleteTruck(truck['id'])}
+                                                className="fa fa-trash-o"
+                                                aria-hidden="true"
+                                            ></i>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        }
                     </tbody>
                 </Table>
 

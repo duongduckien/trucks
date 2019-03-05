@@ -8,7 +8,6 @@ import * as driversActions from '../../actions/drivers.action';
 const mapStateToProps = (state: any) => {
     return {
         trucks: state.trucks,
-        drivers: state.drivers,
     };
 };
 
