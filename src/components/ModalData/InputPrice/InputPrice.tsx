@@ -29,46 +29,10 @@ export class InputPrice extends React.Component<IProps, {}> {
         const reg = /^[1-9][0-9,]*$/;
 
         if (reg.test(value) || value === '') {
-            const data = this.addSymbol(value, ',');
+            const data = helper.addSymbol(value, ',');
             this.setState({ price: data });
-            this.props.onPrice(parseInt(this.replaceChar(data), 10));
+            this.props.onPrice(parseInt(helper.replaceChar(data), 10));
         }
-
-    }
-
-    replaceChar(str: string) {
-        return str.replace(/,/g, '');
-    }
-
-    addSymbol(data: string, symbol: string) {
-
-        const newData = this.replaceChar(data);
-        const length = newData.length;
-
-        if (length > 3) {
-
-            const result = Math.floor(length / 3);
-            const balance = length % 3;
-            const numSymbol = (balance === 0) ? result - 1 : result;
-            let str = '';
-            let cnt = 0;
-            let cntSymbol = 0;
-
-            for (let i = length - 1; i >= 0; i--) {
-                cnt++;
-                str += newData.charAt(i);
-                if (cnt === 3 && cntSymbol < numSymbol) {
-                    cntSymbol++;
-                    str += symbol;
-                    cnt = 0;
-                }
-            }
-
-            return helper.reverseString(str);
-
-        }
-
-        return newData;
 
     }
 

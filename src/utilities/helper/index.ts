@@ -34,4 +34,50 @@ export class Helper {
         return str.split('').reduce((ret, character) => (character + ret));
     }
 
+    
+    /**
+     * Function replace character
+     * @param  {string} str
+     */
+    replaceChar(str: string) {
+        return str.replace(/,/g, '');
+    }
+    
+    /**
+     * Function add symbol to string
+     * @param  {string} data
+     * @param  {string} symbol
+     */
+    addSymbol(data: string, symbol: string) {
+
+        const newData = this.replaceChar(data);
+        const length = newData.length;
+
+        if (length > 3) {
+
+            const result = Math.floor(length / 3);
+            const balance = length % 3;
+            const numSymbol = (balance === 0) ? result - 1 : result;
+            let str = '';
+            let cnt = 0;
+            let cntSymbol = 0;
+
+            for (let i = length - 1; i >= 0; i--) {
+                cnt++;
+                str += newData.charAt(i);
+                if (cnt === 3 && cntSymbol < numSymbol) {
+                    cntSymbol++;
+                    str += symbol;
+                    cnt = 0;
+                }
+            }
+
+            return this.reverseString(str);
+
+        }
+
+        return newData;
+
+    }
+
 }

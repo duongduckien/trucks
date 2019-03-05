@@ -94,7 +94,7 @@ export class ListTrucks extends React.Component<IProps, {}> {
                                         <td>{truck['cargoTypeShow'] ? truck['cargoTypeShow'] : ''}</td>
                                         <td>{truck['driverShow'] ? truck['driverShow'] : ''}</td>
                                         <td>{truck['truckType'] ? truck['truckType'] : ''}</td>
-                                        <td>{truck['price'] ? truck['price'] : ''}</td>
+                                        <td>{truck['priceShow'] ? truck['priceShow'] : ''}</td>
                                         <td>{truck['dimensionShow'] ? truck['dimensionShow'] : ''}</td>
                                         <td>{truck['parkingAddress'] ? truck['parkingAddress'] : ''}</td>
                                         <td>{truck['productionYear'] ? truck['productionYear'] : ''}</td>

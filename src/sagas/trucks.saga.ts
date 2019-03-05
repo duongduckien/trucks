@@ -2,10 +2,14 @@ import { put, call, fork, takeLatest, takeEvery } from 'redux-saga/effects';
 import * as types from '../actions/types';
 import * as trucksActions from '../actions/trucks.action';
 
+// Utilities
+import { Helper } from '../utilities/helper';
+
 // Services
 import { API } from '../services/api';
 
 const api = new API();
+const helper = new Helper();
 
 export function* getTruckTypes() {
 
@@ -128,6 +132,11 @@ export function* getTrucks() {
 
                 if (truck['dimension']) {
                     truck['dimensionShow'] = `${truck['dimension']['l']} - ${truck['dimension']['w']} - ${truck['dimension']['h']}`;
+                }
+
+                if (truck['price']) {
+                    const price = truck['price'];
+                    truck['priceShow'] = helper.addSymbol(price.toString(), ',');
                 }
 
                 console.log(truck);
