@@ -2,6 +2,9 @@
     td i {
         padding: 0.5em;
     }
+    i:hover {
+        cursor: pointer;
+    }
 }
 .btn-add-truck {
     margin: 0 0 1rem 0;

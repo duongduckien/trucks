@@ -11,6 +11,7 @@ export const GET_TRUCK_STATUS_SUCCESS = 'GET_TRUCK_STATUS_SUCCESS';
 export const CREATE_TRUCK = 'CREATE_TRUCK';
 export const GET_TRUCKS = 'GET_TRUCKS';
 export const GET_TRUCKS_SUCCESS = 'GET_TRUCKS_SUCCESS';
+export const SEARCH_TRUCKS = 'SEARCH_TRUCKS';
 
 // Drivers
 export const GET_DRIVERS = 'GET_DRIVERS';

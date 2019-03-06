@@ -139,7 +139,6 @@ export function* getTrucks() {
                     truck['priceShow'] = helper.addSymbol(price.toString(), ',');
                 }
 
-                console.log(truck);
             }
         }
 

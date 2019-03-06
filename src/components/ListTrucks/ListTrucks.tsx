@@ -12,17 +12,26 @@ import { IModalFormData } from '../../interfaces/Modal';
 
 interface IProps {
     actions: {
-        modal: any,
-        trucks: any,
-        drivers: any,
+        modal: any;
+        trucks: any;
+        drivers: any;
     };
     trucks: {
-        listTrucks: any,
-        cargoTypes: any,
+        listTrucks: any;
+        cargoTypes: any;
+        searchTrucks: string;
     };
 }
 
-export class ListTrucks extends React.Component<IProps, {}> {
+interface IState {
+    listTrucks: any;
+}
+
+export class ListTrucks extends React.Component<IProps, IState> {
+
+    state = {
+        listTrucks: [],
+    };
 
     constructor(props: any) {
         super(props);
@@ -30,6 +39,38 @@ export class ListTrucks extends React.Component<IProps, {}> {
 
     componentDidMount() {
         this.props.actions.trucks.getTrucks();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+
+        if (nextProps.trucks.searchTrucks !== '') {
+            const newListTrucks = this.filterByTruckPlate(nextProps.trucks.listTrucks, nextProps.trucks.searchTrucks);
+            this.setState({
+                listTrucks: newListTrucks,
+            });
+        } else {
+            this.setState({
+                listTrucks: nextProps.trucks.listTrucks,
+            });
+        }
+
+    }
+
+    filterByTruckPlate(arr: any, str: string) {
+
+        const filteredArray = [];
+
+        if (arr.length > 0) {
+            for (const item of arr) {
+                if (item['truckPlate'].toString().toLowerCase().indexOf(str.toLowerCase()) >= 0) {
+                    filteredArray.push(item);
+                }
+            }
+        }
+
+        return filteredArray;
+
     }
 
     addTruck() {
@@ -87,7 +128,7 @@ export class ListTrucks extends React.Component<IProps, {}> {
                     </thead>
                     <tbody>
                         {
-                            this.props.trucks.listTrucks.map((truck: any, index: number) => {
+                            this.state.listTrucks.map((truck: any, index: number) => {
                                 return (
                                     <tr key={index}>
                                         <td>{truck['truckPlate'] ? truck['truckPlate'] : ''}</td>

@@ -6,6 +6,7 @@ import {
     CREATE_TRUCK,
     GET_TRUCKS,
     GET_TRUCKS_SUCCESS,
+    SEARCH_TRUCKS,
 } from './types';
 
 export const getCargoTypes = () => ({
@@ -44,4 +45,9 @@ export const getTrucksSuccess = ({ items }) => ({
     payload: {
         items,
     },
+});
+
+export const searchTrucks = (value: any) => ({
+    type: SEARCH_TRUCKS,
+    payload: value,
 });
