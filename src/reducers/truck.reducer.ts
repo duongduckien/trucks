@@ -5,6 +5,7 @@ export interface ITrucksState {
     truckStatus: any;
     listTrucks: any;
     searchTrucks: string;
+    currentPage: number;
 }
 
 export const TRUCKS_INITAL_STATE: ITrucksState = {
@@ -12,6 +13,7 @@ export const TRUCKS_INITAL_STATE: ITrucksState = {
     truckStatus: [],
     listTrucks: [],
     searchTrucks: '',
+    currentPage: 1,
 };
 
 export function trucksReducer(state = TRUCKS_INITAL_STATE, action: any): ITrucksState {
@@ -27,6 +29,9 @@ export function trucksReducer(state = TRUCKS_INITAL_STATE, action: any): ITrucks
         }
         case types.SEARCH_TRUCKS: {
             return { ...state, ...{ searchTrucks: action.payload } };
+        }
+        case types.CHANGE_CURRENT_PAGE: {
+            return { ...state, ...{ currentPage: action.payload } };
         }
         default: {
             return state;

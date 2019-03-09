@@ -43,7 +43,6 @@ export class ListTrucks extends React.Component<IProps, IState> {
 
     componentWillReceiveProps(nextProps) {
         console.log(nextProps);
-
         if (nextProps.trucks.searchTrucks !== '') {
             const newListTrucks = this.filterByTruckPlate(nextProps.trucks.listTrucks, nextProps.trucks.searchTrucks);
             this.setState({
@@ -54,13 +53,10 @@ export class ListTrucks extends React.Component<IProps, IState> {
                 listTrucks: nextProps.trucks.listTrucks,
             });
         }
-
     }
 
     filterByTruckPlate(arr: any, str: string) {
-
         const filteredArray = [];
-
         if (arr.length > 0) {
             for (const item of arr) {
                 if (item['truckPlate'].toString().toLowerCase().indexOf(str.toLowerCase()) >= 0) {
@@ -68,9 +64,7 @@ export class ListTrucks extends React.Component<IProps, IState> {
                 }
             }
         }
-
         return filteredArray;
-
     }
 
     addTruck() {

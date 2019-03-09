@@ -1,3 +1,7 @@
 .paginator {
     float: right;
+    .current-page {
+        background-color: #00a223;
+        color: #fff !important;
+    }
 }

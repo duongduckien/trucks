@@ -12,6 +12,7 @@ export const CREATE_TRUCK = 'CREATE_TRUCK';
 export const GET_TRUCKS = 'GET_TRUCKS';
 export const GET_TRUCKS_SUCCESS = 'GET_TRUCKS_SUCCESS';
 export const SEARCH_TRUCKS = 'SEARCH_TRUCKS';
+export const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
 
 // Drivers
 export const GET_DRIVERS = 'GET_DRIVERS';

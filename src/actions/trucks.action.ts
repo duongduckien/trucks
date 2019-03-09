@@ -7,6 +7,7 @@ import {
     GET_TRUCKS,
     GET_TRUCKS_SUCCESS,
     SEARCH_TRUCKS,
+    CHANGE_CURRENT_PAGE,
 } from './types';
 
 export const getCargoTypes = () => ({
@@ -49,5 +50,10 @@ export const getTrucksSuccess = ({ items }) => ({
 
 export const searchTrucks = (value: any) => ({
     type: SEARCH_TRUCKS,
+    payload: value,
+});
+
+export const changeCurrentPage = (value: any) => ({
+    type: CHANGE_CURRENT_PAGE,
     payload: value,
 });
