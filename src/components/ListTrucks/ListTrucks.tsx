@@ -7,8 +7,8 @@ import './styles.scss';
 import Search from '../../components/Search';
 import Paginator from '../../components/Paginator';
 
-// Interfaces
-import { IModalFormData } from '../../interfaces/Modal';
+// Config
+import * as configData from '../../assets/data/config.json';
 
 interface IProps {
     actions: {
@@ -20,17 +20,20 @@ interface IProps {
         listTrucks: any;
         cargoTypes: any;
         searchTrucks: string;
+        currentPage: number;
     };
 }
 
 interface IState {
     listTrucks: any;
+    currentPage: number;
 }
 
 export class ListTrucks extends React.Component<IProps, IState> {
 
     state = {
         listTrucks: [],
+        currentPage: 0,
     };
 
     constructor(props: any) {
@@ -42,16 +45,19 @@ export class ListTrucks extends React.Component<IProps, IState> {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         if (nextProps.trucks.searchTrucks !== '') {
             const newListTrucks = this.filterByTruckPlate(nextProps.trucks.listTrucks, nextProps.trucks.searchTrucks);
             this.setState({
                 listTrucks: newListTrucks,
             });
         } else {
-            this.setState({
-                listTrucks: nextProps.trucks.listTrucks,
-            });
+            if (this.state.currentPage !== nextProps.trucks.currentPage) {
+                const listItems = this.paginationItems(nextProps.trucks.listTrucks, nextProps.trucks.currentPage, configData['pagination']['perPages']);
+                this.setState({
+                    listTrucks: listItems,
+                    currentPage: nextProps.trucks.currentPage,
+                });
+            }
         }
     }
 
@@ -65,6 +71,20 @@ export class ListTrucks extends React.Component<IProps, IState> {
             }
         }
         return filteredArray;
+    }
+
+    paginationItems(arr: any, currentPage: number, perPages: number) {
+        const items = [];
+        const itemStart = (currentPage * perPages) - 2;
+        const itemEnd = (itemStart + perPages) - 1;
+        if (arr.length > 0) {
+            for (let i = itemStart; i <= itemEnd; i++) {
+                if (arr[i]) {
+                    items.push(arr[i]);
+                }
+            }
+        }
+        return items;
     }
 
     addTruck() {

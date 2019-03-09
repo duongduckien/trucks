@@ -25,5 +25,7 @@
     "DESCRIPTION_MAX_LENGTH": "Description must be of maximum {{number}} characters!",
     "NONE": "None",
     "TON": "ton",
-    "ERROR_TEXT_AREA_MAX_LENGTH": "The text entered exceeds the maximum length"
+    "ERROR_TEXT_AREA_MAX_LENGTH": "The text entered exceeds the maximum length",
+    "NEXT": "Next",
+    "PREVIOUS": "Previous"
 }
